@@ -1,0 +1,19 @@
+#top-bar {
+  width: 100%;
+  border-top: 5px solid #064665;
+  padding: 15px;
+  display: flex;
+  background: #fff;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  padding: 1px;
+  font-size: 1.4rem;
+  background: #9ea5a9;
+  color: #fff;
+  margin-left: auto;
+  text-align: center;
+}
