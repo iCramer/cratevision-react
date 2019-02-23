@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios'
+import ReactTable from "react-table";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { TitleBar } from '../components/TitleBar';
 import { Panel } from '../components/Panel';
-
 import products from '../assets/data/product.json';
 
 export class Products extends Component {
@@ -28,34 +29,41 @@ export class Products extends Component {
   }
 
   render() {
+    const columns = [
+      {
+        Header: 'Name',
+        accessor: 'name'
+      },
+      {
+        Header: 'Stock',
+        accessor: 'stock'
+      },
+      {
+        Header: 'MSRP',
+        accessor: 'msrp'
+      },
+      {
+        Header: 'Actions',
+        Cell: props => {
+          return (
+            <div>
+              <button type="button"><FontAwesomeIcon icon="edit" /></button>
+              <button type="button"><FontAwesomeIcon icon="trash-alt" /></button>
+            </div>
+          )
+        }
+      }
+    ];
+
     return (
       <Fragment>
         <TitleBar title="Products" />
         <section className="container-fluid">
           <Panel>
-            <table className="table table-hover">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Stock</th>
-                  <th>MSRP</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-              {this.state.products && this.state.products.map((product, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{product.name}</td>
-                      <td>{product.stock}</td>
-                      <td>{product.msrp}</td>
-                      <td></td>
-                    </tr>
-                  )
-                })
-              }
-              </tbody>
-            </table>
+          <ReactTable
+            data={products}
+            columns={columns}
+          />
           </Panel>
         </section>
       </Fragment>
