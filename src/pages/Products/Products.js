@@ -4,12 +4,13 @@ import axios from 'axios'
 import { TitleBar } from '../../components/TitleBar/TitleBar';
 import { Panel } from '../../components/Panel/Panel';
 
+import products from '../../assets/data/product.json';
+
 export class Products extends Component {
   constructor() {
     super();
-
     this.state = {
-      products: []
+      products: products
     }
   }
 
@@ -38,18 +39,16 @@ export class Products extends Component {
                   <th>Name</th>
                   <th>Stock</th>
                   <th>MSRP</th>
-                  <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-              {this.state.products && this.state.products.map(product => {
+              {this.state.products && this.state.products.map((product, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{product.name}</td>
                       <td>{product.stock}</td>
                       <td>{product.msrp}</td>
-                      <td>{product.status}</td>
                       <td></td>
                     </tr>
                   )

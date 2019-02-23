@@ -1,9 +1,30 @@
 #top-bar {
   width: 100%;
-  border-top: 5px solid #064665;
-  padding: 15px;
+  padding: 22px 15px 15px 15px;
   display: flex;
   background: #fff;
+  position: relative;
+
+  .top-bar-accent {
+    background: url('../../assets/images/landscape.jpg');
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 7px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(19, 11, 29, 0.8);
+    }
+  }
 }
 
 .avatar {

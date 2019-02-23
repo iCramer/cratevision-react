@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import './SideNav.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logo from '../../assets/images/bundlevoLogoWhite.svg';
 
 export class SideNav extends Component {
 
   render() {
     return (
       <nav id="side-nav">
+        <div className="nav-overlay"></div>
         <div id="logo">
-          <FontAwesomeIcon icon="box-open" />
-          <h3>Bundlevo</h3>
+          <img src={logo} />
         </div>
         <ul className="flex-column">
           <li>

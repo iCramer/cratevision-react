@@ -1,0 +1,24 @@
+{
+    "id": 1,
+    "name": "Sunchips",
+    "notes": [
+        {
+            "id": 1,
+            "title": "Supplier Created",
+            "description": "Note created by user X on 12/16/2019 11:00PM"
+        },
+        {
+            "id": 2,
+            "title": "Supplier Updated",
+            "description": "Supplierm updated stock by user X on 12/16/2019 11:00PM"
+        }
+    ],
+    "address": {
+        "city": "Cleveland",
+        "addressLine1": null,
+        "addressLine2": null,
+        "state": null,
+        "country": null,
+        "zipCode": null
+    }
+}
