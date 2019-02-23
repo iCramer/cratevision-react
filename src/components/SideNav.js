@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import './SideNav.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import logo from '../../assets/images/bundlevoLogoWhite.svg';
+import logo from '../assets/images/bundlevoLogoWhite.svg';
 
 export class SideNav extends Component {
 

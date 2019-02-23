@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios'
 
-import { TitleBar } from '../../components/TitleBar/TitleBar';
-import { Panel } from '../../components/Panel/Panel';
+import { TitleBar } from '../components/TitleBar';
+import { Panel } from '../components/Panel';
 
-import products from '../../assets/data/product.json';
+import products from '../assets/data/product.json';
 
 export class Products extends Component {
   constructor() {

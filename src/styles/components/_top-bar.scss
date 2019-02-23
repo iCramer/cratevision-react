@@ -4,9 +4,11 @@
   display: flex;
   background: #fff;
   position: relative;
+  height: 80px;
+  align-items: center;
 
   .top-bar-accent {
-    background: url('../../assets/images/landscape.jpg');
+    background: url('../assets/images/landscape.jpg');
     background-size: cover;
     background-position: top;
     width: 100%;
@@ -24,6 +26,11 @@
       right: 0;
       background: rgba(19, 11, 29, 0.8);
     }
+  }
+
+  #top-bar-logo {
+    margin: 0;
+    font-weight: 600;
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { TitleBar } from '../../components/TitleBar/TitleBar';
+import { TitleBar } from '../components/TitleBar';
 
 export class ProductItems extends Component {
 

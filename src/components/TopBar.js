@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './TopBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export class TopBar extends Component {
@@ -8,6 +7,7 @@ export class TopBar extends Component {
     return (
       <div id="top-bar">
         <div className="top-bar-accent"></div>
+        <h4 id="top-bar-logo">MyCollegeCrate</h4>
         <div className="avatar">
           IC
         </div>

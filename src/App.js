@@ -4,12 +4,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './App.scss';
-import { SideNav } from './components/SideNav/SideNav';
-import { TopBar } from './components/TopBar/TopBar';
-import { Dashboard } from './pages/Dashboard/Dashboard';
-import { Products } from './pages/Products/Products';
-import { ProductItems } from './pages/ProductItems/ProductItems';
-import { Orders } from './pages/Orders/Orders';
+import { SideNav } from './components/SideNav';
+import { TopBar } from './components/TopBar';
+import { Dashboard } from './pages/Dashboard';
+import { Products } from './pages/Products';
+import { ProductItems } from './pages/ProductItems';
+import { Orders } from './pages/Orders';
 
 //Font Awesome Icons
 import {
