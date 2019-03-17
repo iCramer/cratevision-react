@@ -1,0 +1,86 @@
+{
+    "id": 1,
+    "internalId": "PO-12345",
+    "org": {
+        "id": 1,
+        "name": null,
+        "address": null,
+        "website": null,
+        "phone": null
+    },
+    "status": {
+        "id": 1,
+        "name": null,
+        "org": null,
+        "type": null
+    },
+    "fees": [
+        {
+            "id": 2,
+            "name": null,
+            "org": null,
+            "price": null,
+            "createdOn": null,
+            "updatedOn": null
+        },
+        {
+            "id": 1,
+            "name": null,
+            "org": null,
+            "price": null,
+            "createdOn": null,
+            "updatedOn": null
+        }
+    ],
+    "products": [
+        {
+            "count": 345,
+            "product": {
+                "id": 1,
+                "org": null,
+                "barCode": null,
+                "name": null,
+                "status": null,
+                "fees": null,
+                "notes": null,
+                "productItems": null,
+                "stock": null,
+                "msrp": null,
+                "createdOn": null,
+                "updatedOn": null
+            }
+        },
+        {
+            "count": 345,
+            "product": {
+                "id": 2,
+                "org": null,
+                "barCode": null,
+                "name": null,
+                "status": null,
+                "fees": null,
+                "notes": null,
+                "productItems": null,
+                "stock": null,
+                "msrp": null,
+                "createdOn": null,
+                "updatedOn": null
+            }
+        }
+    ],
+    "notes": [
+        {
+            "id": 13,
+            "title": "Product ORder Created",
+            "description": "Product Order created by user X on 12/16/2019 11:00PM"
+        },
+        {
+            "id": 14,
+            "title": "Product ORder Updated",
+            "description": "Product order updated stock by user X on 12/16/2019 11:00PM"
+        }
+    ],
+    "deliveredOn": "01/26/1985",
+    "createdOn": "2019-02-17T21:55:44.28",
+    "updatedOn": "2019-02-17T21:55:44.28"
+}

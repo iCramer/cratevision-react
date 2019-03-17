@@ -1,0 +1,20 @@
+.be-table {
+  width: 100%;
+
+  thead, tbody {
+    tr {
+      th, td {
+        padding: .75rem .7rem;
+        font-size: .9rem;
+      }
+
+      th {
+        border-bottom: 1px solid $gray-200;
+      }
+
+      &:nth-child(even) {
+        background: $gray-100;
+      }
+    }
+  }
+}

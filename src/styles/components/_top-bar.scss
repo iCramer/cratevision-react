@@ -1,0 +1,48 @@
+#top-bar {
+  width: 100%;
+  padding: 15px 15px 8px 15px;
+  display: flex;
+  background: #fff;
+  position: relative;
+  height: 65px;
+  align-items: center;
+
+  .top-bar-accent {
+    background: $be-background-image;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 7px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: $be-overlay-color;
+    }
+  }
+
+  #top-bar-logo {
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.avatar {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  background: $be-overlay-color;
+  color: #fff;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

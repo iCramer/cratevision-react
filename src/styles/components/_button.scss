@@ -1,0 +1,45 @@
+.be-btn {
+  padding: .3rem;
+  color: #fff;
+
+  &-danger {
+    background-color: $danger;
+
+    &.be-btn-link {
+      color: $danger;
+    }
+  }
+  &-warning {
+    background-color: $warning;
+
+    &.be-btn-link {
+      color: $warning;
+    }
+  }
+  &-success {
+    background-color: $success;
+
+    &.be-btn-link {
+      color: $success;
+    }
+  }
+  &-info {
+    background-color: $info;
+
+    &.be-btn-link {
+      color: $info;
+    }
+  }
+
+  &-link {
+    background: none;
+    border: none;
+    color: $info;
+  }
+
+  &:focus {
+    outline: 1px solid rgba(0, 109, 187, .4);
+    box-shadow: 0 0 3px 2px rgba(0, 109, 187, .3);
+  }
+
+}

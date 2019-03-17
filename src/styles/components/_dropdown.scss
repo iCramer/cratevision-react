@@ -1,0 +1,28 @@
+.be-dropdown {
+  .be-dropdown-list {
+    display: none;
+    background: #fff;
+    border-radius: 3px;
+    padding: .75rem;
+    position: absolute;
+    min-width: 150px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, .1);
+
+    &.open {
+      display: block;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      .be-dropdown-list-item {
+        button {
+          width: 100%;
+          text-align: left;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "id": 2,
+    "org": {
+        "id": 1,
+        "name": null,
+        "address": null,
+        "website": null,
+        "phone": null
+    },
+    "supplier": {
+        "id": 1,
+        "name": null,
+        "notes": null,
+        "address": null
+    },
+    "barCode": "UPC134",
+    "description": "This is description. This is description. This is description. This is description. ",
+    "name": "Sunchips",
+    "stock": 10,
+    "caseQty": 34,
+    "caseCost": 29.99,
+    "notes": [
+        {
+            "id": 5,
+            "title": "Product Item Created",
+            "description": "Note created by user X on 12/16/2019 11:00PM"
+        },
+        {
+            "id": 6,
+            "title": "Product Item Updated",
+            "description": "Product ITem updated stock by user X on 12/16/2019 11:00PM"
+        }
+    ],
+    "createdOn": "2019-02-17T21:55:28.475",
+    "updatedOn": "2019-02-17T21:55:28.475"
+}
