@@ -37,7 +37,8 @@ export class Login extends Component {
 
   render() {
     if(this.state.loginSuccess) {
-      return <Redirect to="/dashboard" />
+      const from = this.props.location.state.from || '/dashboard';
+      return <Redirect to={from} />
     }
     return (
       <Fragment>

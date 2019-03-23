@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Filter } from '../Filter';
 import { TitleBar } from '../components/TitleBar';
 import { Panel } from '../components/Panel';
 import { Table } from '../components/Table';
+import HttpService from '../services/HttpService';
 
 export class Products extends Component {
+  http = new HttpService();
+
   constructor() {
     super();
     this.state = {
@@ -21,12 +23,9 @@ export class Products extends Component {
   }
 
   getProducts() {
-    const token = localStorage.getItem('jwt');
-    axios.get('http://my.bundlevo.com/product/all', { headers: { authorization: token } })
-    .then(resp => {
+    this.http.get('product/all').then(resp => {
       this.setState({ products: resp.data || [], filteredProducts: resp.data });
-    })
-    .catch(error => {
+    }).catch(error => {
       console.log(error.response)
     });
   }

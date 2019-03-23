@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import { PrivateRoute } from '../components/PrivateRoute';
 
 import { SideNav } from '../components/SideNav';
 import { TopBar } from '../components/TopBar';
@@ -16,12 +17,12 @@ export class MainApp extends Component {
             <TopBar />
             <main>
               <Switch>
-                <Route exact path="/dashboard" component={ Dashboard } />
-                <Route exact path="/products" component={ Products } />
-                <Route exact path="/orders" component={ Orders } />
-                <Route exact path="/">
+                <PrivateRoute exact path="/dashboard" component={ Dashboard } />
+                <PrivateRoute exact path="/products" component={ Products } />
+                <PrivateRoute exact path="/orders" component={ Orders } />
+                <PrivateRoute exact path="/">
                   <Redirect to="/dashboard" />
-                </Route>
+                </PrivateRoute>
               </Switch>
             </main>
           </div>
