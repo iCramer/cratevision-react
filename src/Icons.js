@@ -3,7 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 //Font Awesome Icons
 import {
   faTachometerAlt,
-  faBarcode,
+  faCubes,
   faBoxOpen,
   faBox,
   faShippingFast,
@@ -16,7 +16,7 @@ import {
 
 library.add(
   faTachometerAlt,
-  faBarcode,
+  faCubes,
   faBoxOpen,
   faBox,
   faShippingFast,

@@ -27,7 +27,7 @@ export class SideNav extends Component {
           </li>
           <li>
             <NavLink activeClassName="active" to="/product-items">
-              <FontAwesomeIcon icon="barcode" />
+              <FontAwesomeIcon icon="cubes" />
               <span>Apps</span>
             </NavLink>
           </li>

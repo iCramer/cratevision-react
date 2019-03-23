@@ -1,15 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 import { Filter } from '../Filter';
 import { TitleBar } from '../components/TitleBar';
 import { Panel } from '../components/Panel';
 import { Table } from '../components/Table';
-import HttpService from '../services/HttpService';
+import API from '../services/api';
 
 export class Products extends Component {
-  http = new HttpService();
-
   constructor() {
     super();
     this.state = {
@@ -23,7 +22,7 @@ export class Products extends Component {
   }
 
   getProducts() {
-    this.http.get('product/all').then(resp => {
+    API.get('product/all').then(resp => {
       this.setState({ products: resp.data || [], filteredProducts: resp.data });
     }).catch(error => {
       console.log(error.response)
@@ -37,14 +36,14 @@ export class Products extends Component {
 
   render() {
     const columns = [
-        { label: 'Name', selector: 'name' },
+        { label: 'Name',
+          render: obj => <Link to={'/products/' + obj.id}>{obj.name}</Link>
+        },
         { label: 'Stock', selector: 'stock' },
         { label: 'MSRP', selector: 'msrp' },
         {
           label: 'Status',
-          render: obj => {
-            return <span className="badge badge-primary">{obj.status.name}</span>
-          }
+          render: obj => <span className="badge badge-primary">{obj.status.name}</span>
         }
     ];
 
@@ -60,14 +59,14 @@ export class Products extends Component {
     return (
       <Fragment>
         <TitleBar title="Products" />
-        <section className="container-fluid">
+        <div className="container-fluid">
           <div className="form-group">
             <input type="text" className="form-control search-input" onChange={evt => this.filter(evt)} placeholder="Search" />
           </div>
           <Panel>
             <Table columns={columns} records={this.state.filteredProducts} actions={tableActions} />
           </Panel>
-        </section>
+        </div>
       </Fragment>
     )
   }

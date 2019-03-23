@@ -6,6 +6,7 @@ import { SideNav } from '../components/SideNav';
 import { TopBar } from '../components/TopBar';
 import { Dashboard } from './Dashboard';
 import { Products } from './Products';
+import { ProductDetails } from './ProductDetails';
 import { Orders } from './Orders';
 
 export class MainApp extends Component {
@@ -19,6 +20,7 @@ export class MainApp extends Component {
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={ Dashboard } />
                 <PrivateRoute exact path="/products" component={ Products } />
+                <PrivateRoute exact path="/products/:id" component={ ProductDetails } />
                 <PrivateRoute exact path="/orders" component={ Orders } />
                 <PrivateRoute exact path="/">
                   <Redirect to="/dashboard" />

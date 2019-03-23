@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Panel } from '../components/Panel';
 import { Input } from '../components/Input';
 import logo from '../assets/images/logo.png';
+import httpService from '../services/api';
 
 export class Login extends Component {
   constructor(props) {
@@ -19,18 +20,18 @@ export class Login extends Component {
 
   setFormValues = (evt, field) => {
     this.setState({
-      [`${field}`]: evt.target.value
+      [field]: evt.target.value
     });
   }
 
   submitForm = () => {
-    let body = { username: this.state.email, password: this.state.password };
+    const body = { username: this.state.email, password: this.state.password };
 
-    axios.post('http://my.bundlevo.com/login', body).then(resp => {
+    httpService.API.post('login', body).then(resp => {
       const token = resp.headers.authorization;
       localStorage.setItem('jwt', token);
       this.setState({loginSuccess: true});
-    }, error => {
+    }).catch( error => {
       console.log(error)
     });
   }
