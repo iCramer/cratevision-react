@@ -6,3 +6,5 @@ const API = axios.create({
 });
 
 export default API;
+
+//Proxy address -> https://thingproxy.freeboard.io/fetch/

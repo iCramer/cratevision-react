@@ -12,7 +12,8 @@ export class ProductDetails extends Component {
     this.state = {
       id: this.props.match.params.id,
       product: {},
-      cost: 0
+      cost: 0,
+      profit: 0
     }
 
     this.getProduct();
@@ -37,8 +38,9 @@ export class ProductDetails extends Component {
     this.state.product.productItemQuantities.forEach( item => {
       prodItemsCost += item.productItem.itemCost;
     });
-
-    this.setState({ cost: (fees + prodItemsCost).toFixed(2)});
+    const cost = (fees + prodItemsCost).toFixed(2);
+    const profit = this.state.product.msrp - cost;
+    this.setState({ cost: cost, profit: profit });
   }
 
   render() {
@@ -55,7 +57,7 @@ export class ProductDetails extends Component {
             <span className="badge badge-pill badge-danger">Cost</span>
           </div>
           <div className="calc-group">
-            <span className="h2">{product.mspr - this.state.cost}</span>
+            <span className="h2">{this.state.profit}</span>
             <span className="badge badge-pill badge-success">Profit</span>
           </div>
         </TitleBar>

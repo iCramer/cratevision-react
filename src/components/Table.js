@@ -55,7 +55,7 @@ export class Table extends Component {
                 }
                 { this.props.actions &&
                     <td>
-                      <Dropdown icon="cog">
+                      <Dropdown position="bottom-left" icon="cog">
                         { this.props.actions && this.props.actions.map( action => {
                           return (
                             <DropdownItem key={action.label + index} label={action.label} action={(evt) => action.action(obj, evt)} />

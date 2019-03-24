@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios'
 
 import { Panel } from '../components/Panel';
 import { Input } from '../components/Input';
 import logo from '../assets/images/logo.png';
-import httpService from '../services/api';
+import API from '../services/api';
 
 export class Login extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ export class Login extends Component {
   submitForm = () => {
     const body = { username: this.state.email, password: this.state.password };
 
-    httpService.API.post('login', body).then(resp => {
+    API.post('login', body).then(resp => {
       const token = resp.headers.authorization;
       localStorage.setItem('jwt', token);
       this.setState({loginSuccess: true});
@@ -38,7 +37,13 @@ export class Login extends Component {
 
   render() {
     if(this.state.loginSuccess) {
-      const from = this.props.location.state.from || '/dashboard';
+      let from = '';
+      if(this.props.location.state && this.props.location.state.from) {
+        from = this.props.location.state.from;
+      }
+      else {
+        from = '/dashboard';
+      }
       return <Redirect to={from} />
     }
     return (
