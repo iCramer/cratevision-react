@@ -48,6 +48,7 @@
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
+    border: none;
   }
 
   .avatar-dd {
@@ -58,6 +59,7 @@
     width: 260px;
     background: $gray-100;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,.2);
+    border-radius: 3px;
 
     &.open {
       display: block;

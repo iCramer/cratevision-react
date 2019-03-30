@@ -43,7 +43,9 @@ export class Products extends Component {
         { label: 'MSRP', selector: 'msrp' },
         {
           label: 'Status',
-          render: obj => <span className="badge badge-primary">{obj.status.name}</span>
+          render: obj => {
+            return obj.status && <span className="badge badge-primary">{obj.status.name}</span>;
+          }
         }
     ];
 
