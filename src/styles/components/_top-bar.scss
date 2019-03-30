@@ -60,6 +60,7 @@
     background: $gray-100;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,.2);
     border-radius: 3px;
+    z-index: 100;
 
     &.open {
       display: block;

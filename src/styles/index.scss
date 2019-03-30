@@ -43,20 +43,18 @@ main {
   padding-bottom: 40px;
 }
 
-.search-input {
-  width: 250px;
+.row {
+  margin-bottom: 30px;
+
+  &.full-height-cols {
+    & > * {
+      display: flex;
+    }
+  }
 }
 
-.calc-group {
-  display: inline-block;
-  margin-left: 1rem;
-  text-align: center;
-
-  .h2 {
-    display: block;
-    margin: 0;
-    line-height: 1.6rem;
-  }
+.search-input {
+  width: 250px;
 }
 
 #login {
