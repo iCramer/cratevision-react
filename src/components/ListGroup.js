@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const ListGroup = ({children, className, ...props}) => {
-  let classSet = classNames('list-group', className);
+export const ListGroup = ({children, className, iconList, ...props}) => {
+  let classSet = classNames('list-group', className, {'icon-list': iconList});
   return (
     <ul className={classSet} {...props}>
       {children}
@@ -10,18 +12,36 @@ export const ListGroup = ({children, className, ...props}) => {
   )
 }
 
-export const ListGroupItem = ({children, className, justifyContent, ...props}) => {
-  let classSet = classNames(
+export const ListGroupItem = ({children, icon, color, className, justifyContent, ...props}) => {
+  let classSetLi = classNames(
     'list-group-item',
     className,
     {
+      'justify-content-between': justifyContent,
       'd-flex': justifyContent,
-      'justify-content-between': justifyContent
+      'item-prefixed': icon
     }
   );
+
+  let classSetSpan = classNames(
+    'list-item-prefix',
+    {
+      [color]: color
+    }
+  );
+
   return (
-    <li className={classSet} {...props}>
+    <li className={classSetLi} {...props}>
+      {icon &&
+        <span className={classSetSpan}>
+          <FontAwesomeIcon icon={icon} />
+        </span>
+      }
       {children}
     </li>
   )
+}
+
+ListGroupItem.defaultProps = {
+  color: 'blue'
 }

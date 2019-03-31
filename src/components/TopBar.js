@@ -13,8 +13,7 @@ export class TopBar extends Component {
       avatarOpen: false,
       isLoggedIn: true,
       userInfo: {},
-      initials: '',
-      orgInfo: {}
+      initials: ''
     };
 
     this.getUserInfo();
@@ -27,15 +26,6 @@ export class TopBar extends Component {
         userInfo: user,
         initials: user.firstName.charAt(0) + user.lastName.charAt(0)
       });
-      this.getOrgInfo();
-    }).catch( error => {
-      console.log(error);
-    });
-  }
-
-  getOrgInfo() {
-    API.get('/org/all').then( resp => {
-      this.setState({ orgInfo: resp.data[0] });
     }).catch( error => {
       console.log(error);
     });
@@ -81,7 +71,7 @@ export class TopBar extends Component {
     return (
       <header id="top-bar">
         <div className="top-bar-accent"></div>
-        <h4 id="top-bar-logo">{this.state.orgInfo.name}</h4>
+        <h4 id="top-bar-logo">{this.state.userInfo.org && this.state.userInfo.org.name}</h4>
         <div className="avatar">
           <button type="button" className="avatar-btn" onClick={this.open}>
             {this.state.initials}
@@ -89,7 +79,7 @@ export class TopBar extends Component {
           <div className={this.getListClasses()} ref={node => this.node = node}>
             <div className="avatar-dd-header">
               <h5>{this.state.userInfo.firstName + ' ' + this.state.userInfo.lastName}</h5>
-              <p>{this.state.orgInfo.name}</p>
+              <p>{this.state.userInfo.org && this.state.userInfo.org.name}</p>
             </div>
             <ul className="avatar-dd-body">
               <li>

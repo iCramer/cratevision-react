@@ -4,6 +4,7 @@ import { TitleBar } from '../components/TitleBar';
 import { Panel } from '../components/Panel';
 import { Table } from '../components/Table';
 import { ListGroup, ListGroupItem } from '../components/ListGroup';
+import { Block } from '../components/Block';
 import API from '../services/api';
 
 export class ProductDetails extends Component {
@@ -61,34 +62,32 @@ export class ProductDetails extends Component {
         <div className="container-fluid">
           <div className="row full-height-cols">
             <div className="col">
-              <Panel>
-                <h4>Summary</h4>
-                <ListGroup>
-                  <ListGroupItem justifyContent>
+              <Panel accent="blue" title="Summary">
+                <ListGroup iconList>
+                  <ListGroupItem justifyContent icon="address-card">
                     Name <span>{product.name}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent>
+                  <ListGroupItem justifyContent icon="tag">
                     MSRP <span>{product.msrp}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent>
+                  <ListGroupItem justifyContent icon="hand-holding-usd">
                     Cost <span>{this.state.cost}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent>
+                  <ListGroupItem justifyContent icon="money-bill-alt">
                     Profit <span>{this.state.profit}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent>
+                  <ListGroupItem justifyContent icon="ellipsis-h">
                     Status <span>{product.status && product.status.name}</span>
                   </ListGroupItem>
                 </ListGroup>
               </Panel>
             </div>
             <div className="col">
-              <Panel>
-                <h4>Fees</h4>
-                <ListGroup>
+              <Panel accent="yellow" title="Fees">
+                <ListGroup iconList>
                 {product.fees && product.fees.map( (fee, index) => {
                   return (
-                    <ListGroupItem key={index} justifyContent>
+                    <ListGroupItem key={index} icon="receipt" color="yellow" justifyContent>
                       {fee.name} <span>{fee.price}</span>
                     </ListGroupItem>
                   )
@@ -97,25 +96,20 @@ export class ProductDetails extends Component {
               </Panel>
             </div>
             <div className="col">
-              <Panel>
-                <h4>Notes</h4>
-                <ListGroup>
+              <Panel accent="pink" title="Notes">
                 {product.notes && product.notes.map( (note, index) => {
                   return (
-                    <ListGroupItem key={index}>
-                      <h5>{note.title}</h5>
-                      <p>{note.description}</p>
-                    </ListGroupItem>
+                    <Block key={index} title={note.title}>
+                      {note.description}
+                    </Block>
                   )
                 })}
-                </ListGroup>
               </Panel>
             </div>
           </div>
           <div className="row">
             <div className="col">
-              <Panel>
-                <h4>Product Items</h4>
+              <Panel accent="blue" title="Product Items">
                 <Table records={product.productItemQuantities} columns={productItemColumns} />
               </Panel>
             </div>

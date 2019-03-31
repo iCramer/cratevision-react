@@ -12,7 +12,14 @@ import {
   faTrashAlt,
   faCog,
   faSearch,
-  faSignOutAlt
+  faSignOutAlt,
+  faTag,
+  faAddressCard,
+  faMoneyBillAlt,
+  faHandHoldingUsd,
+  faEllipsisH,
+  faReceipt,
+  faScroll
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -26,5 +33,12 @@ library.add(
   faTrashAlt,
   faCog,
   faSearch,
-  faSignOutAlt
+  faSignOutAlt,
+  faTag,
+  faAddressCard,
+  faMoneyBillAlt,
+  faHandHoldingUsd,
+  faEllipsisH,
+  faReceipt,
+  faScroll
 );
