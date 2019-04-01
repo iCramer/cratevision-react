@@ -16,7 +16,6 @@
 @import "../../node_modules/bootstrap/scss/input-group";
 @import "../../node_modules/bootstrap/scss/custom-forms";
 @import "../../node_modules/bootstrap/scss/pagination";
-@import "../../node_modules/bootstrap/scss/badge";
 @import "../../node_modules/bootstrap/scss/progress";
 @import "../../node_modules/bootstrap/scss/close";
 @import "../../node_modules/bootstrap/scss/modal";
@@ -35,6 +34,7 @@
 @import "./components/form";
 @import "./components/list-group";
 @import "./components/block";
+@import "./components/badge";
 
 body {
   background: #f5f5f5;

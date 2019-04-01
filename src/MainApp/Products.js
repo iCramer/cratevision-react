@@ -6,6 +6,7 @@ import { Filter } from '../Filter';
 import { TitleBar } from '../components/TitleBar';
 import { Panel } from '../components/Panel';
 import { Table } from '../components/Table';
+import { Badge } from '../components/Badge';
 import API from '../services/api';
 
 export class Products extends Component {
@@ -44,7 +45,8 @@ export class Products extends Component {
         {
           label: 'Status',
           render: obj => {
-            return obj.status && <span className="badge badge-primary">{obj.status.name}</span>;
+            let style = obj.status && obj.status.name === 'Active' ? 'success' : 'danger';
+            return obj.status && <Badge style={style} type="blip">{obj.status.name}</Badge>;
           }
         }
     ];
@@ -65,7 +67,7 @@ export class Products extends Component {
           <div className="form-group">
             <input type="text" className="form-control search-input" onChange={evt => this.filter(evt)} placeholder="Search" />
           </div>
-          <Panel>
+          <Panel accent="blue">
             <Table columns={columns} records={this.state.filteredProducts} actions={tableActions} />
           </Panel>
         </div>

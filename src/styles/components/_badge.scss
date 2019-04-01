@@ -1,0 +1,71 @@
+.badge {
+
+  &.badge-pill {
+    color: #fff;
+    padding: .15rem .6rem;
+    border-radius: 10rem;
+    font-size: .85rem;
+    
+    &.badge-primary {
+      background: $primary;
+    }
+    &.badge-secondary {
+      background: $secondary;
+    }
+    &.badge-warning {
+      background: $warning;
+    }
+    &.badge-danger {
+      background: $danger;
+    }
+    &.badge-success {
+      background: $success;
+    }
+    &.badge-light {
+      background: $light;
+      color: $body-color;
+    }
+    &.badge-info {
+      background: $info;
+    }
+    &.badge-dark {
+      background: $dark;
+    }
+  }
+
+  &.badge-blip {
+    &::before {
+      content: '';
+      display: inline-block;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      margin-right: 3px;
+    }
+
+    &.badge-primary::before {
+      background: $primary;
+    }
+    &.badge-secondary::before {
+      background: $secondary;
+    }
+    &.badge-warning::before {
+      background: $warning;
+    }
+    &.badge-danger::before {
+      background: $danger;
+    }
+    &.badge-success::before {
+      background: $success;
+    }
+    &.badge-light::before {
+      background: $light;
+    }
+    &.badge-info::before {
+      background: $info;
+    }
+    &.badge-dark::before {
+      background: $dark;
+    }
+  }
+}

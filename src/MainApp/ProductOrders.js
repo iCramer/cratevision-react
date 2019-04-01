@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { TitleBar } from '../components/TitleBar';
 import { Panel } from '../components/Panel';
 import { Table } from '../components/Table';
+import { Badge } from '../components/Badge';
 import API from '../services/api';
 import { Filter } from '../Filter';
 
@@ -46,13 +47,14 @@ export class ProductOrders extends Component {
         { label: 'Delivery Date', selector: 'deliveredOn' },
         { label: 'Product Quantity',
           render: obj => {
-            return <span className="badge badge-pill badge-secondary">{obj.productQuantities.length}</span>;
+            return <Badge>{obj.productQuantities.length}</Badge>;
           }
         },
         {
           label: 'Status',
           render: obj => {
-            return obj.status && <span className="badge badge-pill badge-primary">{obj.status.name}</span>;
+            let style = obj.status && obj.status.name === 'Active' ? 'success' : 'danger';
+            return obj.status && <Badge style={style} type="blip">{obj.status.name}</Badge>;
           }
         }
     ];

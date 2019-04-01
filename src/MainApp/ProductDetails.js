@@ -5,6 +5,7 @@ import { Panel } from '../components/Panel';
 import { Table } from '../components/Table';
 import { ListGroup, ListGroupItem } from '../components/ListGroup';
 import { Block } from '../components/Block';
+import { Badge } from '../components/Badge';
 import API from '../services/api';
 
 export class ProductDetails extends Component {
@@ -56,6 +57,8 @@ export class ProductDetails extends Component {
       { label: 'Description', selector: 'productItem.description' }
     ];
 
+    const statusStyle = product.status && product.status.name === 'Active' ? 'success' : 'danger';
+
     return (
       <Fragment>
         <TitleBar title="Product Details" />
@@ -77,7 +80,7 @@ export class ProductDetails extends Component {
                     Profit <span>{this.state.profit}</span>
                   </ListGroupItem>
                   <ListGroupItem justifyContent icon="ellipsis-h">
-                    Status <span>{product.status && product.status.name}</span>
+                    Status <Badge type="blip" style={statusStyle}>{product.status && product.status.name}</Badge>
                   </ListGroupItem>
                 </ListGroup>
               </Panel>
