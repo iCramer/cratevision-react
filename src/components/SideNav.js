@@ -9,9 +9,6 @@ export class SideNav extends Component {
     return (
       <nav id="side-nav">
         <div className="nav-overlay"></div>
-        <div id="logo">
-          <img src={logo} />
-        </div>
         <ul className="flex-column">
           <li>
             <NavLink activeClassName="active" to="/dashboard">

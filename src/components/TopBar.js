@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logo from '../assets/images/horizontalWhiteText.png';
 
 import API from '../services/api';
 
@@ -70,8 +71,7 @@ export class TopBar extends Component {
 
     return (
       <header id="top-bar">
-        <div className="top-bar-accent"></div>
-        <h4 id="top-bar-logo">{this.state.userInfo.org && this.state.userInfo.org.name}</h4>
+        <img src={logo} id="logo" />
         <div className="avatar">
           <button type="button" className="avatar-btn" onClick={this.open}>
             {this.state.initials}

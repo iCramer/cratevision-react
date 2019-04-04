@@ -1,8 +1,8 @@
 #top-bar {
   width: 100%;
-  padding: 15px 15px 8px 15px;
+  padding: 15px;
   display: flex;
-  background: #fff;
+  background: #3e3e3e;
   position: relative;
   height: 65px;
   align-items: center;
@@ -31,7 +31,12 @@
   #top-bar-logo {
     margin: 0;
     font-weight: 600;
+    color: #fff;
   }
+}
+
+#logo {
+  max-width: 200px;
 }
 
 .avatar {
@@ -42,8 +47,8 @@
     height: 37px;
     border-radius: 50%;
     font-size: 1.2rem;
-    background: $be-overlay-color;
-    color: #fff;
+    background: $gray-100;
+    color: $body-color;
     display: flex;
     align-items: center;
     justify-content: center;

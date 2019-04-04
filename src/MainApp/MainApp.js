@@ -13,24 +13,24 @@ import { ProductOrderDetails } from './ProductOrderDetails';
 export class MainApp extends Component {
   render() {
     return (
-        <div className="d-flex flex-row">
-          <SideNav />
           <div className="flex-fill">
             <TopBar />
-            <main>
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={ Dashboard } />
-                <PrivateRoute exact path="/products" component={ Products } />
-                <PrivateRoute exact path="/products/:id" component={ ProductDetails } />
-                <PrivateRoute exact path="/product-orders" component={ ProductOrders } />
-                <PrivateRoute exact path="/product-orders/:id" component={ ProductOrderDetails } />
-                <PrivateRoute exact path="/">
-                  <Redirect to="/dashboard" />
-                </PrivateRoute>
-              </Switch>
-            </main>
+            <div class="d-flex flex-row">
+              <SideNav />
+              <main>
+                <Switch>
+                  <PrivateRoute exact path="/dashboard" component={ Dashboard } />
+                  <PrivateRoute exact path="/products" component={ Products } />
+                  <PrivateRoute exact path="/products/:id" component={ ProductDetails } />
+                  <PrivateRoute exact path="/product-orders" component={ ProductOrders } />
+                  <PrivateRoute exact path="/product-orders/:id" component={ ProductOrderDetails } />
+                  <PrivateRoute exact path="/">
+                    <Redirect to="/dashboard" />
+                  </PrivateRoute>
+                </Switch>
+              </main>
+            </div>
           </div>
-        </div>
     );
   }
 }
