@@ -8,7 +8,6 @@ export class SideNav extends Component {
   render() {
     return (
       <nav id="side-nav">
-        <div className="nav-overlay"></div>
         <ul className="flex-column">
           <li>
             <NavLink activeClassName="active" to="/dashboard">

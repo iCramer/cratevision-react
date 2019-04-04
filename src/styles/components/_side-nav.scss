@@ -1,6 +1,6 @@
 #side-nav {
   width: 190px;
-  background: $be-background-image;
+  // background: $be-background-image;
   background-size: cover;
   background-position: top;
   position: sticky;
@@ -24,7 +24,7 @@
   a {
     display: block;
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: $body-color;
     padding: .75rem 1.3rem;
     transition: all .2s ease-out;
 
