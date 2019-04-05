@@ -5,7 +5,7 @@
     padding: .15rem .6rem;
     border-radius: 10rem;
     font-size: .85rem;
-    
+
     &.badge-primary {
       background: $primary;
     }
@@ -40,7 +40,7 @@
       border-radius: 50%;
       width: 10px;
       height: 10px;
-      margin-right: 3px;
+      margin-right: 5px;
     }
 
     &.badge-primary::before {

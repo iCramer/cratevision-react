@@ -35,15 +35,11 @@ export class ProductOrders extends Component {
     this.setState({filteredOrders: data});
   }
 
-  onRowClick = (row, evt) => {
-    if(evt.target.tagName === 'TD') {
-      this.setState({viewDetails: true, detailsId: row.id});
-    }
-  };
-
   render() {
     const columns = [
-        { label: 'ID', selector: 'internalId'},
+        { label: 'ID',
+          render: obj => <Link to={'/product-orders/' + obj.id}>{obj.internalId}</Link>
+        },
         { label: 'Delivery Date', selector: 'deliveredOn' },
         { label: 'Product Quantity',
           render: obj => {
@@ -79,8 +75,8 @@ export class ProductOrders extends Component {
           <div className="form-group">
             <input type="text" className="form-control search-input" onChange={evt => this.filter(evt)} placeholder="Search" />
           </div>
-          <Panel>
-            <Table columns={columns} records={this.state.filteredOrders} actions={tableActions} onRowClick={this.onRowClick} />
+          <Panel accent="blue">
+            <Table columns={columns} records={this.state.filteredOrders} actions={tableActions} />
           </Panel>
         </div>
       </Fragment>
