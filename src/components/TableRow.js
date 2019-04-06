@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
-import { Dropdown, DropdownItem } from './Dropdown';
+import { Dropdown, DropdownItem } from './core';
 
 export class TableRow extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export class TableRow extends Component {
   }
 
   getClassSet() {
-    return classNames({
+    return classnames({
       'row-clickable': this.props.onRowClick
     });
   }

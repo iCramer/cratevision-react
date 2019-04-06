@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { Panel } from '../components/Panel';
+import { Panel } from '../components/core';
 import logo from '../assets/images/logo.png';
 import { Login } from './Login';
 

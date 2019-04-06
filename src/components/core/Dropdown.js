@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import classNames from 'classnames';
+import classnames from 'classnames';
+
+import { Button } from './Button';
 
 export class Dropdown extends Component {
   constructor(props) {
@@ -30,7 +32,7 @@ export class Dropdown extends Component {
 
   getListClasses() {
     let position = this.props.position || '';
-    const classes = classNames(
+    const classes = classnames(
       'dropdown-list',
       'dropdown-' + position,
       { 'open': this.state.open }
@@ -42,14 +44,11 @@ export class Dropdown extends Component {
   render() {
     return (
       <div className="dropdown">
-        <button type="button" onClick={this.open} className="be-btn be-btn-link">
-          { this.props.icon &&
-            <FontAwesomeIcon icon={this.props.icon} />
-          }
+        <Button onClick={this.open} linkBtn icon={this.props.icon}>
           { this.props.label &&
              this.props.label
           }
-        </button>
+        </Button>
         <div className={this.getListClasses()} ref={node => this.node = node}>
           <ul>
             { this.props.children &&
@@ -70,7 +69,7 @@ export class Dropdown extends Component {
 export const DropdownItem = (props) => {
   return (
     <li className="dropdown-list-item">
-      <button type="button" className="be-btn be-btn-link" onClick={props.action}>{props.label}</button>
+      <Button linkBtn onClick={props.action}>{props.label}</Button>
     </li>
   )
 }

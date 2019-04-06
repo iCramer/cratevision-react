@@ -3,10 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
 import { Filter } from '../Filter';
-import { TitleBar } from '../components/TitleBar';
-import { Panel } from '../components/Panel';
+import { TitleBar, Panel, Badge } from '../components/core';
 import { Table } from '../components/Table';
-import { Badge } from '../components/Badge';
 import API from '../services/api';
 
 export class Products extends Component {

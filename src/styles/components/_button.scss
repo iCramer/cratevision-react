@@ -1,37 +1,55 @@
-.be-btn {
+.btn {
   padding: .3rem;
   color: #fff;
+  border-radius: 10rem;
+  border: none;
+  padding: .45rem .8rem;
 
+  &-primary {
+    background-color: $primary;
+
+    &.btn-link {
+      color: $primary;
+    }
+  }
+  &-secondary {
+    background-color: $secondary;
+
+    &.btn-link {
+      color: $secondary;
+    }
+  }
   &-danger {
     background-color: $danger;
 
-    &.be-btn-link {
+    &.btn-link {
       color: $danger;
     }
   }
   &-warning {
     background-color: $warning;
 
-    &.be-btn-link {
+    &.btn-link {
       color: $warning;
     }
   }
   &-success {
     background-color: $success;
 
-    &.be-btn-link {
+    &.btn-link {
       color: $success;
     }
   }
   &-info {
     background-color: $info;
 
-    &.be-btn-link {
+    &.btn-link {
       color: $info;
     }
   }
 
   &-link {
+    border-radius: 0;
     background: none;
     border: none;
     color: $info;
@@ -40,6 +58,17 @@
   &:focus {
     outline: 1px solid rgba(0, 109, 187, .4);
     box-shadow: 0 0 3px 2px rgba(0, 109, 187, .3);
+  }
+
+  &-centered {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &.icon-with-text {
+    .btn-icon {
+      margin-right: .3rem;
+    }
   }
 
 }

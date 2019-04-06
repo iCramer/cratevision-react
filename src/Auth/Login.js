@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { Panel } from '../components/Panel';
-import { Input } from '../components/Input';
+import { Panel, Input, Button } from '../components/core';
 import logo from '../assets/images/logo.png';
 import API from '../services/api';
 
@@ -44,14 +43,14 @@ export class Login extends Component {
       else {
         from = '/dashboard';
       }
-      return <Redirect to={from} />
+      return <Redirect to={from} push />
     }
     return (
       <Fragment>
         <h2>Login</h2>
         <Input label="Email" onChange={(evt) => this.setFormValues(evt, 'email')} />
         <Input type="password" label="Password" onChange={(evt) => this.setFormValues(evt, 'password')} />
-        <button type="submit" className="btn btn-primary" onClick={this.submitForm}>Submit</button>
+        <Button type="submit" btnStyle="primary" onClick={this.submitForm} centered>Submit</Button>
       </Fragment>
     )
   }

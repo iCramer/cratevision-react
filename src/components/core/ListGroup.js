@@ -1,9 +1,9 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const ListGroup = ({children, className, iconList, ...props}) => {
-  let classSet = classNames('list-group', className, {'icon-list': iconList});
+  let classSet = classnames('list-group', className, {'icon-list': iconList});
   return (
     <ul className={classSet} {...props}>
       {children}
@@ -12,7 +12,7 @@ export const ListGroup = ({children, className, iconList, ...props}) => {
 }
 
 export const ListGroupItem = ({children, icon, color, className, justifyContent, ...props}) => {
-  let classSetLi = classNames(
+  let classSetLi = classnames(
     'list-group-item',
     className,
     {
@@ -22,7 +22,7 @@ export const ListGroupItem = ({children, icon, color, className, justifyContent,
     }
   );
 
-  let classSetSpan = classNames(
+  let classSetSpan = classnames(
     'list-item-prefix',
     {
       [color]: color
