@@ -10,6 +10,7 @@ import { ProductDetails } from './ProductDetails';
 import { ProductOrders } from './ProductOrders';
 import { ProductOrderDetails } from './ProductOrderDetails';
 import { EditProduct } from './EditProduct';
+import { AppIntegrations } from './AppIntegrations';
 
 export class MainApp extends Component {
   render() {
@@ -26,6 +27,7 @@ export class MainApp extends Component {
                 <PrivateRoute exact path="/products/:id/edit" component={ EditProduct } />
                 <PrivateRoute exact path="/product-orders" component={ ProductOrders } />
                 <PrivateRoute exact path="/product-orders/:id" component={ ProductOrderDetails } />
+                <PrivateRoute exact path="/app-integrations" component={ AppIntegrations } />
                 <PrivateRoute exact path="/">
                   <Redirect to="/dashboard" />
                 </PrivateRoute>

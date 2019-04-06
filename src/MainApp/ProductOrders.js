@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Panel, TitleBar, Badge } from '../components/core';
 import { Table } from '../components/Table';
@@ -11,8 +11,7 @@ export class ProductOrders extends Component {
     super();
     this.state = {
       orders: [],
-      filteredOrders: [],
-      viewDetails: false
+      filteredOrders: []
     }
   }
 
@@ -53,19 +52,6 @@ export class ProductOrders extends Component {
         }
     ];
 
-    const tableActions = [
-      {
-        label: 'Edit',
-        action: obj => {
-          console.log(obj.stock)
-        }
-      }
-    ];
-
-    if(this.state.viewDetails) {
-      return <Redirect to={'/product-orders/' + this.state.detailsId} push />
-    }
-
     return (
       <Fragment>
         <TitleBar title="Product Orders" />
@@ -74,7 +60,7 @@ export class ProductOrders extends Component {
             <input type="text" className="form-control search-input" onChange={evt => this.filter(evt)} placeholder="Search" />
           </div>
           <Panel accent="blue">
-            <Table columns={columns} records={this.state.filteredOrders} actions={tableActions} />
+            <Table columns={columns} records={this.state.filteredOrders} />
           </Panel>
         </div>
       </Fragment>

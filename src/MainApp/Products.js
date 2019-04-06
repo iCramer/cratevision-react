@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +13,8 @@ export class Products extends Component {
     super();
     this.state = {
       products: [],
-      filteredProducts: []
+      filteredProducts: [],
+      editId: null
     }
   }
 
@@ -53,10 +55,14 @@ export class Products extends Component {
       {
         label: 'Edit',
         action: obj => {
-          console.log(obj.stock)
+          this.setState({editId: obj.id});
         }
       }
     ];
+
+    if(this.state.editId) {
+      return <Redirect to={'/products/' + this.state.editId + '/edit'} push />
+    }
 
     return (
       <Fragment>
