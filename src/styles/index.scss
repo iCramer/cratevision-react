@@ -40,9 +40,17 @@ body {
   background: #ececec;
 }
 
+img {
+  max-width: 100%;
+}
+
 h1 {
   font-weight: 200;
   font-size: $font-size-base * 2;
+}
+
+a {
+  color: $blue;
 }
 
 main {
