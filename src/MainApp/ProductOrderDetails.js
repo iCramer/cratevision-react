@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
-import { TitleBar } from '../components/TitleBar';
-import { Panel } from '../components/Panel';
+import { TitleBar, Panel, Button, ListGroup, ListGroupItem, Badge, Block } from '../components/core';
 import { Table } from '../components/Table';
 import API from '../services/api';
 
@@ -26,15 +26,75 @@ export class ProductOrderDetails extends Component {
   }
 
   render() {
-    let order = this.state.order;
+    const order = this.state.order;
+    const statusStyle = order.status && order.status.name === 'Active' ? 'success' : 'danger';
+    const productColumns = [
+      {
+        label: 'Name',
+        render: obj => <Link to={'/products/' + obj.id}>{obj.product.name}</Link>
+      },
+      { label: 'Count', selector: 'product.count' },
+      { label: 'MSRP', selector: 'product.product.msrp' },
+      {
+        label: 'Status',
+        render: obj => {
+          const badgeStyle = obj.product.status.name === 'Active' ? 'success' : 'danger';
+          return (
+            <Badge type="blip" style={badgeStyle}>{obj.product.status.name}</Badge>
+          )
+        }
+      }
+    ];
+
     return (
       <Fragment>
         <TitleBar title="Product Order Details" />
         <div className="container-fluid">
+          <div className="row full-height-cols">
+            <div className="col">
+              <Panel accent="blue" title="Summary">
+                <ListGroup iconList>
+                  <ListGroupItem justifyContent icon="address-card">
+                    Delivery Date <span>{order.deliveredOn}</span>
+                  </ListGroupItem>
+                  <ListGroupItem justifyContent icon="tag">
+                    Internal Id <span>{order.internalId}</span>
+                  </ListGroupItem>
+                  <ListGroupItem justifyContent icon="ellipsis-h">
+                    Status <Badge type="blip" style={statusStyle}>{order.status && order.status.name}</Badge>
+                  </ListGroupItem>
+                </ListGroup>
+              </Panel>
+            </div>
+            <div className="col">
+              <Panel accent="yellow" title="Fees">
+                <ListGroup iconList>
+                {order.fees && order.fees.map( (fee, index) => {
+                  return (
+                    <ListGroupItem key={'fee-' + index} icon="receipt" color="yellow" justifyContent>
+                      {fee.name} <span>{fee.price}</span>
+                    </ListGroupItem>
+                  )
+                })}
+                </ListGroup>
+              </Panel>
+            </div>
+            <div className="col">
+              <Panel accent="pink" title="Notes">
+                {order.notes && order.notes.map( (note, index) => {
+                  return (
+                    <Block key={'block-' + index} title={note.title}>
+                      {note.description}
+                    </Block>
+                  )
+                })}
+              </Panel>
+            </div>
+          </div>
           <div className="row">
-            <div className="col-sm-6">
-              <Panel>
-                <h1>Order {this.state.id}</h1>
+            <div className="col">
+              <Panel accent="blue" title="Products">
+                <Table records={order.productQuantities} columns={productColumns} />
               </Panel>
             </div>
           </div>

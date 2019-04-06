@@ -1,8 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 export const Block = ({title, metaTag, className, ...props}) => {
-  let classSet = classNames('block', className);
+  let classSet = classnames('block', className);
   return (
     <div className={classSet} {...props}>
       <h5 className="block-title">{title}</h5>

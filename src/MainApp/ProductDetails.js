@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import { TitleBar } from '../components/TitleBar';
-import { Panel } from '../components/Panel';
+import { TitleBar, Panel, Button, ListGroup, ListGroupItem, Badge, Block } from '../components/core';
 import { Table } from '../components/Table';
-import { ListGroup, ListGroupItem } from '../components/ListGroup';
-import { Block } from '../components/Block';
-import { Badge } from '../components/Badge';
 import API from '../services/api';
 
 export class ProductDetails extends Component {
@@ -61,7 +57,9 @@ export class ProductDetails extends Component {
 
     return (
       <Fragment>
-        <TitleBar title="Product Details" />
+        <TitleBar title="Product Details">
+          <Button route={'/products/' + this.state.id + '/edit'} btnStyle="primary">Edit</Button>
+        </TitleBar>
         <div className="container-fluid">
           <div className="row full-height-cols">
             <div className="col">

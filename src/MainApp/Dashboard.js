@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { TitleBar } from '../components/TitleBar';
+import { TitleBar } from '../components/core';
 
 export class Dashboard extends Component {
 

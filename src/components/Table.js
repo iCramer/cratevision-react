@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Dropdown, DropdownItem } from './Dropdown';
+import { Dropdown, DropdownItem } from './core';
 import { TableRow } from './TableRow';
 
 export class Table extends Component {

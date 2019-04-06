@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-import { TitleBar } from '../components/TitleBar';
-import { Panel } from '../components/Panel';
+import { Panel, TitleBar, Badge } from '../components/core';
 import { Table } from '../components/Table';
-import { Badge } from '../components/Badge';
 import API from '../services/api';
 import { Filter } from '../Filter';
 

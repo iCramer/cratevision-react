@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { Button } from '../components/core';
 import API from '../services/api';
 
 export class TopBar extends Component {
@@ -46,7 +47,7 @@ export class TopBar extends Component {
   }
 
   getListClasses() {
-    const classes = classNames(
+    const classes = classnames(
       'avatar-dd',
       { 'open': this.state.avatarOpen }
     );
@@ -83,9 +84,7 @@ export class TopBar extends Component {
             </div>
             <ul className="avatar-dd-body">
               <li>
-                <button type="button" className="be-btn be-btn-link" onClick={this.logOut}>
-                  <FontAwesomeIcon icon="sign-out-alt" className="avatar-dd-icon" />Log Out
-                </button>
+                <Button btnStyle="primary" onClick={this.logOut} linkBtn icon="sign-out-alt">Log Out</Button>
               </li>
             </ul>
           </div>
