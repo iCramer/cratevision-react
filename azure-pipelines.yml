@@ -14,6 +14,21 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+- task: FtpUpload@1
+    inputs:
+      credentialsOption: 'serviceEndpoint'
+      serverEndpoint: 'Bundlevo_Droplet'
+      serverUrl: 'ftps://208.68.38.194'
+      username: 'pipelines'
+      password: 'Automated!914'
+      rootDirectory: '$(build.artifactStagingDirectory)'
+      filePatterns: '**' 
+      remoteDirectory: '/jobs/$(Build.BuildId)/'
+      clean: false 
+      cleanContents: false
+      overwrite: true 
+      preservePaths: false 
+      trustSSL: true 
 
 - script: |
     npm install
