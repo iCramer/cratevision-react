@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
+# define variables to use during the build
+variables:
+  buildOutputFolder: 'src/build'
+
 steps:
 - task: NodeTool@0
   inputs:
