@@ -34,7 +34,7 @@ steps:
       username: 'pipelines'
       password: 'Automated!914'
       rootDirectory: '$(Build.ArtifactStagingDirectory)'
-      filePatterns: '**/*' 
+      filePatterns: '**' 
       remoteDirectory: '/jobs/react/$(Build.BuildId)/'
       clean: false 
       cleanContents: false
