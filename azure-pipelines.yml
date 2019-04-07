@@ -23,7 +23,7 @@ steps:
       password: 'Automated!914'
       rootDirectory: '$(build.artifactStagingDirectory)'
       filePatterns: '**' 
-      remoteDirectory: '/jobs/$(Build.BuildId)/'
+      remoteDirectory: '/jobs/react/$(Build.BuildId)/'
       clean: false 
       cleanContents: false
       overwrite: true 
