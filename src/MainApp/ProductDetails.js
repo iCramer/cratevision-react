@@ -58,7 +58,7 @@ export class ProductDetails extends Component {
     return (
       <Fragment>
         <TitleBar title="Product Details">
-          <Button route={'/products/' + this.state.id + '/edit'} btnStyle="primary">Edit</Button>
+          <Button route={'/products/' + this.state.id + '/edit'} btnStyle="primary" icon="edit">Edit</Button>
         </TitleBar>
         <div className="container-fluid">
           <div className="row full-height-cols">

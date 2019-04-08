@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://my.bundlevo.com/',
+  baseURL: 'http://api.bundlevo.com/',
   headers: {Authorization: localStorage.getItem('jwt')}
 });
 
