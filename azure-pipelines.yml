@@ -1,0 +1,46 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+# define variables to use during the build
+variables:
+  buildOutputFolder: 'src/build'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'    
+- task: FtpUpload@1
+  inputs:
+      credentialsOption: 'serviceEndpoint'
+      serverEndpoint: 'Bundlevo_Droplet'
+      serverUrl: 'ftps://208.68.38.194'
+      username: 'pipelines'
+      password: 'Automated!914'
+      rootDirectory: '$(Build.ArtifactStagingDirectory)'
+      filePatterns: '**' 
+      remoteDirectory: '/jobs/react/$(Build.BuildId)/'
+      clean: false 
+      cleanContents: false
+      overwrite: true 
+      preservePaths: false 
+      trustSSL: true 
+
+
+
