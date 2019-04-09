@@ -62,7 +62,7 @@ export class TableRow extends Component {
           <Dropdown position="bottom-left" icon="cog">
           { this.props.actions && this.props.actions.map( action => {
             return (
-              <DropdownItem key={action.label + index} label={action.label} action={(evt) => action.action(obj, evt)} />
+              <DropdownItem key={action.label + index} label={action.label} clickHandler={(evt) => action.clickHandler(obj, evt)} />
             )
           })}
           </Dropdown>

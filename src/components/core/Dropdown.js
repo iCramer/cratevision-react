@@ -56,7 +56,7 @@ export class Dropdown extends Component {
             }
             { this.props.list && this.props.list.map( (item, index) => {
               return (
-                <DropdownItem key={index} label={item.label} action={item.action} />
+                <DropdownItem key={index} label={item.label} clickHandler={item.clickHandler} />
               )
             })}
           </ul>
@@ -69,7 +69,7 @@ export class Dropdown extends Component {
 export const DropdownItem = (props) => {
   return (
     <li className="dropdown-list-item">
-      <Button linkBtn onClick={props.action}>{props.label}</Button>
+      <Button linkBtn onClick={props.clickHandler}>{props.label}</Button>
     </li>
   )
 }
