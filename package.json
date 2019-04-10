@@ -22,8 +22,7 @@
   },
   "devDependencies": {
     "babel-loader": "^8.0.5",
-    "@babel/core": "^7.0.0",
-    "webpack": "^2.0.0"
+    "@babel/core": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

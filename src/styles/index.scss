@@ -19,7 +19,6 @@
 @import "../../node_modules/bootstrap/scss/pagination";
 @import "../../node_modules/bootstrap/scss/progress";
 @import "../../node_modules/bootstrap/scss/close";
-@import "../../node_modules/bootstrap/scss/modal";
 @import "../../node_modules/bootstrap/scss/tooltip";
 @import "../../node_modules/bootstrap/scss/popover";
 @import "../../node_modules/bootstrap/scss/utilities";
@@ -35,9 +34,10 @@
 @import "./components/list-group";
 @import "./components/block";
 @import "./components/badge";
+@import "./components/modal";
 
 body {
-  background: #ececec;
+  background: $background-gray;
 }
 
 img {

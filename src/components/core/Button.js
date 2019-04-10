@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from 'classnames';
 
-export const Button = ({children, icon, route, btnStyle, linkBtn, className, centered, ...props}) => {
+export const Button = ({children, icon, route, btnStyle, size, linkBtn, className, centered, ...props}) => {
   const classSet = classnames(
     'btn',
-    'btn-' + btnStyle,
+    `btn-${btnStyle}`,
+    `btn-${size}`,
     {
       'btn-link': linkBtn,
       'btn-centered': centered,
@@ -30,4 +31,9 @@ export const Button = ({children, icon, route, btnStyle, linkBtn, className, cen
   }
 
   return button;
+}
+
+Button.defaultProps = {
+  btnStyle: 'primary',
+  size: 'md'
 }

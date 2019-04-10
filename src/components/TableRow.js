@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from 'classnames';
 
-import { Dropdown, DropdownItem } from './core';
+import { Button } from './core';
 
 export class TableRow extends Component {
   constructor(props) {
@@ -59,13 +58,11 @@ export class TableRow extends Component {
       }
       { this.props.actions &&
         <td>
-          <Dropdown position="bottom-left" icon="cog">
           { this.props.actions && this.props.actions.map( action => {
             return (
-              <DropdownItem key={action.label + index} label={action.label} clickHandler={(evt) => action.clickHandler(obj, evt)} />
+              <Button icon={action.icon} linkBtn size="xs" key={action.label + index} onClick={(evt) => action.clickHandler(obj, evt)} />
             )
           })}
-          </Dropdown>
         </td>
       }
       </tr>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { TitleBar, Panel, Button, ListGroup, ListGroupItem, Badge, Block } from '../components/core';
+import { TitleBar, Panel, ListGroup, ListGroupItem, Badge, Block } from '../components/core';
 import { Table } from '../components/Table';
 import API from '../services/api';
 

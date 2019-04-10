@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 
-import { TitleBar, Panel, Input } from '../components/core';
+import { TitleBar, Panel, Input, Button } from '../components/core';
 import { Table } from '../components/Table';
+import { Modal, ModalBody, ModalFooter } from '../components/Modal';
 import API from '../services/api';
 
 import { Doughnut } from 'react-chartjs-2';
@@ -14,7 +15,9 @@ export class EditProduct extends Component {
       id: this.props.match.params.id,
       product: {},
       displayProduct: {},
-      chartData: {}
+      chartData: {},
+      showEditFeeModal: false,
+      editFee: {}
     }
 
     this.getProduct();
@@ -68,6 +71,34 @@ export class EditProduct extends Component {
     this.calculateCost();
   }
 
+  updateFee = (evt, field) => {
+    let fee = this.state.editFee;
+    fee[field] = evt.target.value;
+    this.setState({
+      editFee: fee
+    });
+  }
+
+  saveEdits = () => {
+    API.put('product/' + this.state.id, this.state.displayProduct).then(resp => {
+      console.log(resp)
+    }).catch(error => {
+      console.log(error.response)
+    });
+  }
+
+  saveFeeEdits = () => {
+    API.put('fee/' + this.state.editFee.id, this.state.editFee).then(resp => {
+      this.closeFeeModal();
+    }).catch(error => {
+      console.log(error.response)
+    });
+  }
+
+  closeFeeModal = () => {
+    this.setState({showEditFeeModal: false});
+  }
+
   render() {
     let product = this.state.displayProduct;
     const feesColumns = [
@@ -76,28 +107,31 @@ export class EditProduct extends Component {
     ];
     const feesActions = [
       { label: 'Edit',
+        icon: 'edit',
         clickHandler: obj => {
-          console.log(obj);
+          this.setState({showEditFeeModal: true, editFee: obj});
         }
       }
     ];
 
     return (
       <Fragment>
-        <TitleBar title="Edit Product" />
+        <TitleBar title="Edit Product">
+          <Button onClick={this.saveEdits}>Save</Button>
+        </TitleBar>
         <div className="container-fluid">
           <div className="row full-height-cols">
             <div className="col">
               <Panel accent="blue" title="Product Information">
-                <Input label="Name" value={product.name} onChange={(evt) => this.updateProduct(evt, 'name')} />
-                <Input label="MSRP" value={product.msrp} onChange={(evt) => this.updateProduct(evt, 'msrp')} />
+                <Input label="Name" value={product.name || ''} onChange={(evt) => this.updateProduct(evt, 'name')} />
+                <Input label="MSRP" value={product.msrp || ''} onChange={(evt) => this.updateProduct(evt, 'msrp')} />
                 <div className="form-check form-check-inline">
                   <input className="form-check-input" type="checkbox" id="active" value="active" />
-                  <label className="form-check-label" for="active">Active</label>
+                  <label className="form-check-label" htmlFor="active">Active</label>
                 </div>
                 <div className="form-check form-check-inline">
                   <input className="form-check-input" type="checkbox" id="prototype" value="prototype" />
-                  <label className="form-check-label" for="prototype">Prototype</label>
+                  <label className="form-check-label" htmlFor="prototype">Prototype</label>
                 </div>
               </Panel>
             </div>
@@ -113,6 +147,16 @@ export class EditProduct extends Component {
             </div>
           </div>
         </div>
+        <Modal title="Edit Fee" open={this.state.showEditFeeModal}>
+          <ModalBody>
+            <Input label="Name" value={this.state.editFee.name || ''} onChange={(evt) => this.updateFee(evt, 'name')} />
+            <Input label="Cost" value={this.state.editFee.price || ''} onChange={(evt) => this.updateFee(evt, 'price')} />
+          </ModalBody>
+          <ModalFooter>
+            <Button linkBtn onClick={this.closeFeeModal}>Cancel</Button>
+            <Button onClick={this.saveFeeEdits}>Submit</Button>
+          </ModalFooter>
+        </Modal>
       </Fragment>
     )
   }

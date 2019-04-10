@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import classnames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Button } from '../components/core';
 import API from '../services/api';

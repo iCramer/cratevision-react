@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { Panel, Input, Button } from '../components/core';
+import { Input, Button } from '../components/core';
 import logo from '../assets/images/logo.png';
 import API from '../services/api';
 

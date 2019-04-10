@@ -1,9 +1,7 @@
 .btn {
-  padding: .3rem;
   color: #fff;
   border-radius: 10rem;
   border: none;
-  padding: .45rem .8rem;
 
   &-primary {
     background-color: $primary;
@@ -53,6 +51,19 @@
     background: none;
     border: none;
     color: $info;
+  }
+
+  &-xs {
+    padding: 0;
+  }
+  &-sm {
+    padding: .35rem .7rem;
+  }
+  &-md {
+    padding: .45rem .8rem;
+  }
+  &-lg {
+    padding: .55rem .9rem;
   }
 
   &:focus {

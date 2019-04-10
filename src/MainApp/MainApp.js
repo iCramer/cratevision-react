@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter as Redirect, Switch } from "react-router-dom";
 import { PrivateRoute } from '../components/core';
 
 import { SideNav } from '../components/SideNav';

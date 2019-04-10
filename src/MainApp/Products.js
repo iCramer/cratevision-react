@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
 import { Filter } from '../Filter';
@@ -54,6 +53,7 @@ export class Products extends Component {
     const tableActions = [
       {
         label: 'Edit',
+        icon: 'edit',
         clickHandler: obj => {
           this.setState({editId: obj.id});
         }
