@@ -1,25 +1,26 @@
 import React, { Component, Fragment } from 'react';
 
-import { TitleBar, Panel, Button, ListGroup, ListGroupItem, Badge, Block } from '../components/core';
-import { Table } from '../components/Table';
-import API from '../services/api';
+import { Panel, Button, ListGroup, ListGroupItem, Badge } from '../../components/core';
+import API from '../../services/api';
 
-export class ProductDetails extends Component {
+import { Doughnut } from 'react-chartjs-2';
+
+export class ProductInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      id: this.props.match.params.id,
       product: {},
       cost: 0,
-      profit: 0
+      profit: 0,
+      chartData: {},
     }
 
     this.getProduct();
   }
 
   getProduct() {
-    API.get('product/' + this.state.id).then(resp => {
+    API.get('product/' + this.props.productId).then(resp => {
       this.setState({ product: resp.data });
       this.calculateCost();
     }).catch(error => {
@@ -28,18 +29,33 @@ export class ProductDetails extends Component {
   }
 
   calculateCost() {
+    let product = this.state.product;
     let fees = 0;
-    this.state.product.fees.forEach( fee => {
+    product.fees.forEach( fee => {
       fees += fee.price;
     });
 
     let prodItemsCost = 0;
-    this.state.product.productItemQuantities.forEach( item => {
+    product.productItemQuantities.forEach( item => {
       prodItemsCost += item.productItem.itemCost;
     });
     const cost = (fees + prodItemsCost).toFixed(2);
-    const profit = this.state.product.msrp - cost;
-    this.setState({ cost: cost, profit: profit });
+    const profit = product.msrp - cost;
+
+    this.setState({
+      chartData: {
+        labels: ['MSRP', 'Fees', 'Product Cost', 'Profit'],
+        datasets: [{
+          data: [product.msrp, fees, prodItemsCost, profit],
+          backgroundColor: [
+          '#ff6384',
+          '#ffcd56',
+          '#36a2eb',
+          '#00ad10'
+          ]
+        }]
+      }
+    })
   }
 
   render() {
@@ -57,10 +73,6 @@ export class ProductDetails extends Component {
 
     return (
       <Fragment>
-        <TitleBar title="Product Details">
-          <Button route={'/products/' + this.state.id + '/edit'} btnStyle="primary" icon="edit">Edit</Button>
-        </TitleBar>
-        <div className="container-fluid">
           <div className="row full-height-cols">
             <div className="col">
               <Panel accent="blue" title="Summary">
@@ -97,25 +109,11 @@ export class ProductDetails extends Component {
               </Panel>
             </div>
             <div className="col">
-              <Panel accent="pink" title="Notes">
-                {product.notes && product.notes.map( (note, index) => {
-                  return (
-                    <Block key={index} title={note.title}>
-                      {note.description}
-                    </Block>
-                  )
-                })}
+              <Panel accent="pink" title="Cost Breakdown">
+                <Doughnut data={this.state.chartData} height={200} />
               </Panel>
             </div>
           </div>
-          <div className="row">
-            <div className="col">
-              <Panel accent="blue" title="Product Items">
-                <Table records={product.productItemQuantities} columns={productItemColumns} />
-              </Panel>
-            </div>
-          </div>
-        </div>
       </Fragment>
     )
   }

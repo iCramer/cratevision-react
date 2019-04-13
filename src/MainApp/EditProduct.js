@@ -83,7 +83,7 @@ export class EditProduct extends Component {
     API.put('product/' + this.state.id, this.state.displayProduct).then(resp => {
       console.log(resp)
     }).catch(error => {
-      console.log(error.response)
+      console.log(JSON.stringify(error.response));
     });
   }
 
@@ -142,7 +142,7 @@ export class EditProduct extends Component {
             </div>
             <div className="col">
               <Panel accent="pink" title="Cost Breakdown">
-                <Doughnut data={this.state.chartData} height={250} />
+                <Doughnut data={this.state.chartData} height={200} />
               </Panel>
             </div>
           </div>

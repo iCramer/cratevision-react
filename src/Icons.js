@@ -4,11 +4,10 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTachometerAlt,
   faCubes,
-  faBoxOpen,
+  faBoxFull,
   faBox,
   faShippingFast,
   faAnchor,
-  faEdit,
   faTrashAlt,
   faCog,
   faSearch,
@@ -20,12 +19,28 @@ import {
   faEllipsisH,
   faReceipt,
   faScroll
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/pro-solid-svg-icons';
+
+import {
+  fal
+} from '@fortawesome/pro-light-svg-icons';
+
+import {
+  far,
+  faEdit
+} from '@fortawesome/pro-regular-svg-icons';
+
+import {
+  fab
+} from '@fortawesome/free-brands-svg-icons';
 
 library.add(
+  fab,
+  fal,
+  far,
   faTachometerAlt,
   faCubes,
-  faBoxOpen,
+  faBoxFull,
   faBox,
   faShippingFast,
   faAnchor,

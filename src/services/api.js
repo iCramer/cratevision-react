@@ -4,7 +4,7 @@ const API = axios.create({
   baseURL: 'http://api.bundlevo.com/',
   headers: {
     Authorization: localStorage.getItem('jwt'),
-    'Content-Type': 'text/plain'
+    'Content-Type': 'application/json'
   }
 });
 

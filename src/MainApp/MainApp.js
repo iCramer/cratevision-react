@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect, Switch } from "react-router-dom";
+import { Redirect, Switch } from "react-router-dom";
 import { PrivateRoute } from '../components/core';
 
 import { SideNav } from '../components/SideNav';
 import { TopBar } from '../components/TopBar';
 import { Dashboard } from './Dashboard';
-import { Products } from './Products';
-import { ProductDetails } from './ProductDetails';
+import { Products } from './products/Products';
+import { ProductDetails } from './products/ProductDetails';
 import { ProductOrders } from './ProductOrders';
 import { ProductOrderDetails } from './ProductOrderDetails';
 import { EditProduct } from './EditProduct';
