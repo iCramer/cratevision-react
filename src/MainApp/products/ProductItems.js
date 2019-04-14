@@ -53,10 +53,13 @@ export class ProductItems extends Component {
 
     let prodItemsCost = 0;
     product.productItemQuantities.forEach( item => {
-      prodItemsCost += item.productItem.itemCost;
+      prodItemsCost += item.productItem.itemCost * item.count;
     });
     const cost = (fees + prodItemsCost).toFixed(2);
-    const profit = product.msrp - cost;
+    let profit = product.msrp - cost;
+    if(profit < 0) {
+      profit = 0;
+    }
 
     this.setState({
       chartData: {

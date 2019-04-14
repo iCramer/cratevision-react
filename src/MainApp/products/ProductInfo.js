@@ -38,22 +38,20 @@ export class ProductInfo extends Component {
 
     let prodItemsCost = 0;
     product.productItemQuantities.forEach( item => {
-      prodItemsCost += item.productItem.itemCost;
+      prodItemsCost += item.productItem.itemCost * item.count;
     });
     const cost = (fees + prodItemsCost).toFixed(2);
-    const profit = product.msrp - cost;
+    let profit = product.msrp - cost;
+    if(profit < 0) {
+      profit = 0;
+    }
 
     this.setState({
       chartData: {
         labels: ['MSRP', 'Fees', 'Product Cost', 'Profit'],
         datasets: [{
           data: [product.msrp, fees, prodItemsCost, profit],
-          backgroundColor: [
-          '#ff6384',
-          '#ffcd56',
-          '#36a2eb',
-          '#00ad10'
-          ]
+          backgroundColor: ['#ff6384', '#ffcd56', '#36a2eb', '#00ad10']
         }]
       }
     })
