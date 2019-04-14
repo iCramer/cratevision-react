@@ -32,69 +32,100 @@
     margin: 0;
     font-weight: 600;
   }
-}
 
-.avatar {
-  margin-left: auto;
-
-  .avatar-btn {
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    background: $be-overlay-color;
-    color: #fff;
-    display: flex;
+  .right-content {
+    margin-left: auto;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    border: none;
-  }
 
-  .avatar-dd {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 15px;
-    width: 260px;
-    background: $gray-100;
-    box-shadow: 0px 0px 12px 0px rgba(0,0,0,.2);
-    border-radius: 3px;
-    z-index: 100;
-
-    &.open {
-      display: block;
+    & > * {
+      margin-left: 1.2rem;
     }
 
-    &-header {
-      background: #2f66a0;
-      color: rgba(255, 255, 255, .9);
-      text-align: center;
+    .notifications {
+      position: relative;
 
-      h5, p {
-        margin: 0;
+      .notifications-badge {
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        background: #ffcf00;
+        border: 1px solid #fff;
+        top: 1px;
+        left: -5px;
+        z-index: 3;
+        border-radius: 50%;
       }
 
-      p {
-        font-style: italic;
+      .notifications-dd {
+        & > button {
+          padding: 0;
+          font-size::  1.3rem;
+        }
       }
     }
 
-    &-body, &-header {
-      padding: 1rem;
-    }
-
-    &-body {
-      list-style-type: none;
-      margin: 0;
-
-      li {
-
+    .avatar {
+      .avatar-btn {
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        background: $blue;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        border: none;
       }
-    }
 
-    &-icon {
-      margin-right: 5px;
+      .avatar-dd {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 15px;
+        width: 260px;
+        background: $gray-100;
+        box-shadow: 0px 0px 12px 0px rgba(0,0,0,.2);
+        border-radius: 3px;
+        z-index: 100;
+
+        &.open {
+          display: block;
+        }
+
+        &-header {
+          background: #2f66a0;
+          color: rgba(255, 255, 255, .9);
+          text-align: center;
+
+          h5, p {
+            margin: 0;
+          }
+
+          p {
+            font-style: italic;
+          }
+        }
+
+        &-body, &-header {
+          padding: 1rem;
+        }
+
+        &-body {
+          list-style-type: none;
+          margin: 0;
+
+          li {
+
+          }
+        }
+
+        &-icon {
+          margin-right: 5px;
+        }
+      }
     }
   }
 }

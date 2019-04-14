@@ -37,7 +37,7 @@ export class Products extends Component {
   render() {
     const columns = [
         { label: 'Name',
-          render: obj => <Link to={'/products/' + obj.id}>{obj.name}</Link>
+          render: obj => <Link to={'/products/' + obj.id + '/product-info'}>{obj.name}</Link>
         },
         { label: 'Stock', selector: 'stock' },
         { label: 'MSRP', selector: 'msrp' },
@@ -45,7 +45,7 @@ export class Products extends Component {
           label: 'Status',
           render: obj => {
             let style = obj.status && obj.status.name === 'Active' ? 'success' : 'danger';
-            return obj.status && <Badge style={style} type="blip">{obj.status.name}</Badge>;
+            return obj.status && <Badge badgeStyle={style} badgeType="blip">{obj.status.name}</Badge>;
           }
         }
     ];

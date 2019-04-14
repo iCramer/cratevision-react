@@ -3,10 +3,20 @@
   border-top: 1px solid $gray-400;
   margin-bottom: 15px;
   border-bottom: 2px solid $gray-400;
-  height: 85px;
+  min-height: 85px;
   border-bottom: 2px solid #dee2e6;
   display: flex;
   align-items: center;
+
+  &.title-bar-nav {
+    .left-content {
+      align-self: flex-end;
+    }
+
+    .title {
+      margin: .8rem 0 .25rem 0;
+    }
+  }
 
   .title {
     margin: 0;

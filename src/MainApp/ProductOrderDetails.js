@@ -40,7 +40,7 @@ export class ProductOrderDetails extends Component {
         render: obj => {
           const badgeStyle = obj.product.status.name === 'Active' ? 'success' : 'danger';
           return (
-            <Badge type="blip" style={badgeStyle}>{obj.product.status.name}</Badge>
+            <Badge badgeType="blip" badgeStyle={badgeStyle}>{obj.product.status.name}</Badge>
           )
         }
       }
@@ -61,7 +61,7 @@ export class ProductOrderDetails extends Component {
                     Internal Id <span>{order.internalId}</span>
                   </ListGroupItem>
                   <ListGroupItem justifyContent icon="ellipsis-h">
-                    Status <Badge type="blip" style={statusStyle}>{order.status && order.status.name}</Badge>
+                    Status <Badge type="blip" badgeStyle={statusStyle}>{order.status && order.status.name}</Badge>
                   </ListGroupItem>
                 </ListGroup>
               </Panel>

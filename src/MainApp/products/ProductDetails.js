@@ -20,8 +20,8 @@ export class ProductDetails extends Component {
 
   render() {
     const tabLinks = [
-      { route: `/products/${this.state.id}`, label: "Product" },
-      { route: `/products/${this.state.id}/product-items`, label: "Product Items" }
+      { route: '/products/' + this.state.id + '/product-info', label: "Product Info" },
+      { route: '/products/' + this.state.id + '/product-items', label: "Product Items" }
     ];
 
     return (
@@ -29,8 +29,8 @@ export class ProductDetails extends Component {
         <TitleBar title="Product Details" links={tabLinks}></TitleBar>
         <div className="container-fluid">
           <Switch>
-            <PrivateRoute exact path={'/products/' + this.state.id} render={ (props) => <ProductInfo productId={this.state.id} /> } />
-            <PrivateRoute exact path={'/products/' + this.state.id + '/product-items'} render={ (props) => <ProductItems productId={this.state.id} /> } />
+            <PrivateRoute path="/products/:id/product-info" component={ ProductInfo } />
+            <PrivateRoute exact path="/products/:id/product-items" component={ ProductItems } />
           </Switch>
         </div>
       </Fragment>

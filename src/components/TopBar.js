@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import classnames from 'classnames';
 
-import { Button } from '../components/core';
+import { Button, Dropdown } from '../components/core';
 import API from '../services/api';
 
 export class TopBar extends Component {
@@ -68,24 +68,36 @@ export class TopBar extends Component {
       return <Redirect to="/auth/login" />
     }
 
+    const alertList = [
+      { label: 'Alert 1', clickHandler: obj => console.log('alert') }
+    ];
+
     return (
       <header id="top-bar">
         <div className="top-bar-accent"></div>
         <h4 id="top-bar-logo">{this.state.userInfo.org && this.state.userInfo.org.name}</h4>
-        <div className="avatar">
-          <button type="button" className="avatar-btn" onClick={this.open}>
-            {this.state.initials}
-          </button>
-          <div className={this.getListClasses()} ref={node => this.node = node}>
-            <div className="avatar-dd-header">
-              <h5>{this.state.userInfo.firstName + ' ' + this.state.userInfo.lastName}</h5>
-              <p>{this.state.userInfo.org && this.state.userInfo.org.name}</p>
+        <div className="right-content">
+          <div className="notifications">
+            { alertList.length &&
+              <span className="notifications-badge"></span>
+            }
+            <Dropdown icon="bell" className="notifications-dd" list={alertList} position="bottom-left" />
+          </div>
+          <div className="avatar">
+            <button type="button" className="avatar-btn" onClick={this.open}>
+              {this.state.initials}
+            </button>
+            <div className={this.getListClasses()} ref={node => this.node = node}>
+              <div className="avatar-dd-header">
+                <h5>{this.state.userInfo.firstName + ' ' + this.state.userInfo.lastName}</h5>
+                <p>{this.state.userInfo.org && this.state.userInfo.org.name}</p>
+              </div>
+              <ul className="avatar-dd-body">
+                <li>
+                  <Button btnStyle="primary" onClick={this.logOut} linkBtn icon="sign-out-alt">Log Out</Button>
+                </li>
+              </ul>
             </div>
-            <ul className="avatar-dd-body">
-              <li>
-                <Button btnStyle="primary" onClick={this.logOut} linkBtn icon="sign-out-alt">Log Out</Button>
-              </li>
-            </ul>
           </div>
         </div>
       </header>

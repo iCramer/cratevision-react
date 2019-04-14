@@ -1,8 +1,16 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export const Panel = ({className, title, accent, ...props}) => {
-  const classSet = classnames('panel', className, {[accent]: accent});
+export const Panel = ({className, title, accent, sticky, ...props}) => {
+  const classSet = classnames(
+    'panel',
+    className,
+    {
+      [accent]: accent,
+      'panel-sticky': sticky
+    }
+  );
+
   return (
     <div className={classSet} {...props}>
       {title &&

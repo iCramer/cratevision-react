@@ -7,6 +7,7 @@ import { Panel } from './Panel';
 import { PrivateRoute } from './PrivateRoute';
 import { TitleBar } from './TitleBar';
 import { Input } from './Input';
+import { Tabs } from './Tabs';
 
 export {
   Badge,
@@ -19,5 +20,6 @@ export {
   Panel,
   PrivateRoute,
   TitleBar,
-  Input
+  Input,
+  Tabs
 }

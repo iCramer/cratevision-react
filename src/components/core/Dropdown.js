@@ -39,9 +39,13 @@ export class Dropdown extends Component {
     return classes;
   }
 
+  getClassSet() {
+    return classnames('dropdown', this.props.className);
+  }
+
   render() {
     return (
-      <div className="dropdown">
+      <div className={this.getClassSet()}>
         <Button onClick={this.open} linkBtn icon={this.props.icon}>
           { this.props.label &&
              this.props.label

@@ -11,19 +11,30 @@ export class ProductItems extends Component {
     super(props);
 
     this.state = {
+      id: this.props.match.params.id,
       product: {},
+      productItems: [],
       cost: 0,
       profit: 0,
       chartData: {},
     }
 
     this.getProduct();
+    this.getProductItems();
   }
 
   getProduct() {
-    API.get('product/' + this.props.productId).then(resp => {
+    API.get('product/' + this.state.id).then(resp => {
       this.setState({ product: resp.data });
       this.calculateCost();
+    }).catch(error => {
+      console.log(error.response)
+    });
+  }
+
+  getProductItems() {
+    API.get('productitem/all').then(resp => {
+      this.setState({ productItems: resp.data });
     }).catch(error => {
       console.log(error.response)
     });
@@ -62,21 +73,26 @@ export class ProductItems extends Component {
   render() {
     let product = this.state.product;
     let productItemColumns = [
-      { label: 'Name', selector: 'productItem.name' },
-      { label: 'Quantity', selector: 'count' },
-      { label: 'Case Quantity', selector: 'productItem.caseQty' },
-      { label: 'Item Cost', selector: 'productItem.itemCost' },
-      { label: 'Supplier', selector: 'productItem.supplier.name' },
-      { label: 'Description', selector: 'productItem.description' }
+      { label: 'Name', selector: 'name' },
+      { label: 'Case Quantity', selector: 'caseQty' },
+      { label: 'Case Cost', selector: 'caseCost' },
+      { label: 'Item Cost', selector: 'itemCost' },
+      { label: 'Supplier', selector: 'supplier.name' },
+      { label: 'Description', selector: 'description' }
     ];
 
     return (
       <Fragment>
-          <div className="row full-height-cols">
-            <div className="col">
+          <div className="row">
+            <div className="col-sm-8">
               <Panel accent="blue" title="Product Items">
-                <Table records={product.productItemQuantities} columns={productItemColumns} />
+                <Table records={this.state.productItems} columns={productItemColumns} />
               </Panel>
+            </div>
+            <div className="col-sm-4">
+            <Panel accent="blue" title="Cost Breakdown" sticky>
+              <Doughnut data={this.state.chartData} height={200} />
+            </Panel>
             </div>
           </div>
       </Fragment>

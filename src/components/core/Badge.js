@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 
-export const Badge = ({children, style, type, className, ...props}) => {
-  let classSet = classnames('badge', className, 'badge-' + style, 'badge-' + type);
+export const Badge = ({children, badgeStyle, badgeType, className, ...props}) => {
+  let classSet = classnames('badge', className, 'badge-' + badgeStyle, 'badge-' + badgeType);
 
   return (
     <span className={classSet} {...props}>{children}</span>
@@ -10,6 +10,6 @@ export const Badge = ({children, style, type, className, ...props}) => {
 }
 
 Badge.defaultProps = {
-  style: 'secondary',
-  type: 'pill'
+  badgeStyle: 'secondary',
+  badgeType: 'pill'
 };

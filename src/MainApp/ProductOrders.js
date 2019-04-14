@@ -47,7 +47,7 @@ export class ProductOrders extends Component {
           label: 'Status',
           render: obj => {
             let style = obj.status && obj.status.name === 'Active' ? 'success' : 'danger';
-            return obj.status && <Badge style={style} type="blip">{obj.status.name}</Badge>;
+            return obj.status && <Badge badgeStyle={style} badgeType="blip">{obj.status.name}</Badge>;
           }
         }
     ];

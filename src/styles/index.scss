@@ -35,6 +35,7 @@
 @import "./components/block";
 @import "./components/badge";
 @import "./components/modal";
+@import "./components/tabs";
 
 body {
   background: $background-gray;
@@ -51,6 +52,10 @@ h1 {
 
 a {
   color: $blue;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 main {

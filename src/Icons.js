@@ -18,7 +18,8 @@ import {
   faHandHoldingUsd,
   faEllipsisH,
   faReceipt,
-  faScroll
+  faScroll,
+  faBell
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -55,5 +56,6 @@ library.add(
   faHandHoldingUsd,
   faEllipsisH,
   faReceipt,
-  faScroll
+  faScroll,
+  faBell
 );

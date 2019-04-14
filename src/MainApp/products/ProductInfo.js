@@ -10,6 +10,7 @@ export class ProductInfo extends Component {
     super(props);
 
     this.state = {
+      id: this.props.match.params.id,
       product: {},
       cost: 0,
       profit: 0,
@@ -20,7 +21,7 @@ export class ProductInfo extends Component {
   }
 
   getProduct() {
-    API.get('product/' + this.props.productId).then(resp => {
+    API.get('product/' + this.state.id).then(resp => {
       this.setState({ product: resp.data });
       this.calculateCost();
     }).catch(error => {
@@ -90,7 +91,7 @@ export class ProductInfo extends Component {
                     Profit <span>{this.state.profit}</span>
                   </ListGroupItem>
                   <ListGroupItem justifyContent icon="ellipsis-h">
-                    Status <Badge type="blip" style={statusStyle}>{product.status && product.status.name}</Badge>
+                    Status <Badge badgeType="blip" badgeStyle={statusStyle}>{product.status && product.status.name}</Badge>
                   </ListGroupItem>
                 </ListGroup>
               </Panel>

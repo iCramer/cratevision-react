@@ -23,7 +23,7 @@ export class MainApp extends Component {
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={ Dashboard } />
                 <PrivateRoute exact path="/products" component={ Products } />
-                <PrivateRoute exact path="/products/:id" component={ ProductDetails } />
+                <PrivateRoute path="/products/:id" component={ ProductDetails } />
                 <PrivateRoute exact path="/products/:id/edit" component={ EditProduct } />
                 <PrivateRoute exact path="/product-orders" component={ ProductOrders } />
                 <PrivateRoute exact path="/product-orders/:id" component={ ProductOrderDetails } />

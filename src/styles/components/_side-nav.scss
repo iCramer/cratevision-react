@@ -1,9 +1,10 @@
 #side-nav {
   width: 80px;
+  min-width: 80px;
   background: $be-background-image;
   background-size: cover;
   background-position: top;
-  position: sticky;
+  position: relative;
   min-height: 100vh;
 
   .nav-overlay {
@@ -13,12 +14,14 @@
     left: 0;
     right: 0;
     background: $be-overlay-color;
-    z-index: -1;
+    z-index: 0;
   }
 
   ul {
     list-style-type: none;
     padding: 0;
+    position: relative;
+    z-index: 1;
   }
 
   a {
@@ -50,6 +53,8 @@
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
   padding: .75rem 1rem;
+  position: relative;
+  z-index: 1;
 
   img {
     margin: 0 auto;
