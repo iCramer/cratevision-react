@@ -69,9 +69,26 @@ export class ProductItems extends Component {
     })
   }
 
+  getItemCount() {
+    let count = 0;
+    this.state.displayProdItems.forEach( item => {
+      count += item.count;
+    });
+    return count;
+  };
+
   render() {
     const productItemQty = this.state.displayProdItems;
     const prodItemCols = [
+      {
+        label: 'Count',
+        render: obj => {
+          let countItem = this.state.displayProdItems.find(item => item.productItem.id === obj.id);
+          obj.count = countItem ? countItem.count : 0;
+
+          return <Badge badgeStyle={obj.count > 0 ? 'info' : 'secondary'}>{obj.count}</Badge>
+        }
+      },
       { label: 'Name', selector: 'name' },
       { label: 'Case Quantity', selector: 'caseQty' },
       { label: 'Case Cost', selector: 'caseCost' },
@@ -79,12 +96,21 @@ export class ProductItems extends Component {
       { label: 'Supplier', selector: 'supplier.name' }
     ];
 
+    const actions = [
+      {
+        icon: 'edit',
+        clickHandler: obj => {
+
+        }
+      }
+    ];
+
     return (
       <Fragment>
           <div className="row">
             <div className="col-sm-8">
               <Panel accent="blue" title="Additional Product Items">
-                <Table records={this.state.productItems} columns={prodItemCols} />
+                <Table records={this.state.productItems} columns={prodItemCols} actions={actions} />
               </Panel>
             </div>
             <div className="col-sm-4">
@@ -92,12 +118,12 @@ export class ProductItems extends Component {
               <Panel accent="pink" title="Cost Breakdown">
                 <Doughnut data={this.state.chartData} legend={{position: 'left', labels: {boxWidth: 15, fontSize: 16, fontColor: '#444'}}} height={90} />
               </Panel>
-              <Panel accent="blue" title="Included Product Items" utility={<Badge badgeStyle="success">{}</Badge>}>
+              <Panel accent="blue" title="Included Product Items" utility={<Badge badgeStyle="success"><strong>{this.getItemCount()}</strong></Badge>}>
                 <ListGroup>
                 { productItemQty && productItemQty.map( (item, index) => {
                   return (
                     <ListGroupItem key={index} justifyContent>
-                      {item.productItem.name} <Badge>{item.count}</Badge>
+                      {item.productItem.name} <Badge badgeStyle="info">{item.count}</Badge>
                     </ListGroupItem>
                   )
                 })}

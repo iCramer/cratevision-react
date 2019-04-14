@@ -19,7 +19,8 @@ import {
   faEllipsisH,
   faReceipt,
   faScroll,
-  faBell
+  faBell,
+  faEdit
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -27,8 +28,7 @@ import {
 } from '@fortawesome/pro-light-svg-icons';
 
 import {
-  far,
-  faEdit
+  far
 } from '@fortawesome/pro-regular-svg-icons';
 
 import {

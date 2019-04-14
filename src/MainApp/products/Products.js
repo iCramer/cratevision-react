@@ -52,8 +52,7 @@ export class Products extends Component {
 
     const tableActions = [
       {
-        label: 'Edit',
-        icon: ['far', 'edit'],
+        icon: 'edit',
         clickHandler: obj => {
           this.setState({editId: obj.id});
         }
