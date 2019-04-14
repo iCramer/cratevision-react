@@ -3,6 +3,7 @@
   background: $gray-100;
   border: 1px solid $gray-400;
   width: 100%;
+  margin-bottom: 30px;
 
   &.blue {
     border-top: 4px solid $blue;
@@ -23,9 +24,15 @@
   .panel-header {
     padding: 10px 15px 0 15px;
     border-radius: 2px 2px 0 0;
+    display: flex;
+    justify-content: space-between;
 
     .panel-title {
       margin-bottom: 0;
+    }
+
+    .panel-utility {
+
     }
   }
 

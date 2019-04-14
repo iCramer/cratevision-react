@@ -3,6 +3,7 @@ import { Switch } from "react-router-dom";
 
 import { ProductInfo } from './ProductInfo';
 import { ProductItems } from './ProductItems';
+import { EditProduct } from '../EditProduct';
 import { TitleBar, Panel, Button, ListGroup, ListGroupItem, Badge, Block, PrivateRoute } from '../../components/core';
 import { Table } from '../../components/Table';
 import API from '../../services/api';
@@ -31,6 +32,7 @@ export class ProductDetails extends Component {
           <Switch>
             <PrivateRoute path="/products/:id/product-info" component={ ProductInfo } />
             <PrivateRoute exact path="/products/:id/product-items" component={ ProductItems } />
+            <PrivateRoute exact path="/products/:id/edit" component={ EditProduct } />
           </Switch>
         </div>
       </Fragment>

@@ -63,13 +63,17 @@ main {
 }
 
 .row {
-  margin-bottom: 30px;
-
   &.full-height-cols {
     & > * {
       display: flex;
     }
   }
+}
+
+.sticky {
+  position: sticky;
+  -webkit-position: sticky;
+  top: 15px;
 }
 
 .search-input {

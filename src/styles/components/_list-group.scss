@@ -8,12 +8,17 @@ $prefix-diameter: 30px;
   &.icon-list {
     margin-left: $prefix-diameter / 2;
     border-left: 1px solid $gray-400;
+    margin-bottom: 0;
+
+    li {
+      line-height: 2rem;
+    }
   }
 
   li {
     position: relative;
     align-items: center;
-    line-height: 2rem;
+    margin-bottom: .5rem;
 
     &.item-prefixed {
       padding-left: ($prefix-diameter / 2) + 5px;

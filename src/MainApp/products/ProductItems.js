@@ -14,9 +14,10 @@ export class ProductItems extends Component {
       id: this.props.match.params.id,
       product: {},
       productItems: [],
+      displayProdItems: [],
       cost: 0,
       profit: 0,
-      chartData: {},
+      chartData: {}
     }
 
     this.getProduct();
@@ -25,7 +26,10 @@ export class ProductItems extends Component {
 
   getProduct() {
     API.get('product/' + this.state.id).then(resp => {
-      this.setState({ product: resp.data });
+      this.setState({
+        product: resp.data,
+        displayProdItems: resp.data.productItemQuantities
+      });
       this.calculateCost();
     }).catch(error => {
       console.log(error.response)
@@ -56,43 +60,50 @@ export class ProductItems extends Component {
 
     this.setState({
       chartData: {
-        labels: ['MSRP', 'Fees', 'Product Cost', 'Profit'],
+        labels: [`MSRP - ${product.msrp}`, `Fees - ${fees}`, `Product Cost - ${prodItemsCost}`, `Profit - ${profit}`],
         datasets: [{
           data: [product.msrp, fees, prodItemsCost, profit],
-          backgroundColor: [
-          '#ff6384',
-          '#ffcd56',
-          '#36a2eb',
-          '#00ad10'
-          ]
+          backgroundColor: ['#ff6384', '#ffcd56', '#36a2eb', '#00ad10']
         }]
       }
     })
   }
 
   render() {
-    let product = this.state.product;
-    let productItemColumns = [
+    const productItemQty = this.state.displayProdItems;
+    const prodItemCols = [
       { label: 'Name', selector: 'name' },
       { label: 'Case Quantity', selector: 'caseQty' },
       { label: 'Case Cost', selector: 'caseCost' },
       { label: 'Item Cost', selector: 'itemCost' },
-      { label: 'Supplier', selector: 'supplier.name' },
-      { label: 'Description', selector: 'description' }
+      { label: 'Supplier', selector: 'supplier.name' }
     ];
 
     return (
       <Fragment>
           <div className="row">
             <div className="col-sm-8">
-              <Panel accent="blue" title="Product Items">
-                <Table records={this.state.productItems} columns={productItemColumns} />
+              <Panel accent="blue" title="Additional Product Items">
+                <Table records={this.state.productItems} columns={prodItemCols} />
               </Panel>
             </div>
             <div className="col-sm-4">
-            <Panel accent="blue" title="Cost Breakdown" sticky>
-              <Doughnut data={this.state.chartData} height={200} />
-            </Panel>
+            <div className="sticky">
+              <Panel accent="pink" title="Cost Breakdown">
+                <Doughnut data={this.state.chartData} legend={{position: 'left', labels: {boxWidth: 15, fontSize: 16, fontColor: '#444'}}} height={90} />
+              </Panel>
+              <Panel accent="blue" title="Included Product Items" utility={<Badge badgeStyle="success">{}</Badge>}>
+                <ListGroup>
+                { productItemQty && productItemQty.map( (item, index) => {
+                  return (
+                    <ListGroupItem key={index} justifyContent>
+                      {item.productItem.name} <Badge>{item.count}</Badge>
+                    </ListGroupItem>
+                  )
+                })}
+                </ListGroup>
+              </Panel>
+              </div>
             </div>
           </div>
       </Fragment>
