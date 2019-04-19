@@ -20,7 +20,9 @@ import {
   faReceipt,
   faScroll,
   faBell,
-  faEdit
+  faEdit,
+  faPlusCircle,
+  faMinusCircle
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -57,5 +59,7 @@ library.add(
   faEllipsisH,
   faReceipt,
   faScroll,
-  faBell
+  faBell,
+  faPlusCircle,
+  faMinusCircle
 );

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 
-import { Panel, Button, ListGroup, ListGroupItem, Badge } from '../../components/core';
+import { Panel, Button, ListGroup, ListGroupItem, Badge, Input } from '../../components/core';
 import { Table } from '../../components/Table';
+import { Modal, ModalFooter, ModalBody } from '../../components/Modal';
 import API from '../../services/api';
 
 import { Doughnut } from 'react-chartjs-2';
@@ -17,7 +18,9 @@ export class ProductItems extends Component {
       displayProdItems: [],
       cost: 0,
       profit: 0,
-      chartData: {}
+      chartData: {},
+      editItem: {},
+      showModal: false
     }
 
     this.getProduct();
@@ -80,16 +83,47 @@ export class ProductItems extends Component {
     return count;
   };
 
+  changeCount = (item, add, countItem) => {
+    let countObj;
+    if (countItem) {
+      countObj = { productItemQuantities: [countItem] };
+    }
+    else {
+      countObj = { productItemQuantities: [{ count: 0, productItem: item }] };
+    }
+    let count = countObj.productItemQuantities[0].count;
+    count = add ? count + 1 : count - 1;
+
+    API.put(`product/${this.state.id}`, countObj).then(resp => {
+      this.setState({
+        product: resp.data,
+        displayProdItems: resp.data.productItemQuantities
+      });
+    }).catch(error => {
+      console.log(error.response)
+    });
+  }
+
+  closeModal = () => {
+    this.setState({ showModal: false });
+  }
+
   render() {
-    const productItemQty = this.state.displayProdItems;
-    const prodItemCols = [
+    let productItemQty = this.state.displayProdItems;
+    let prodItemCols = [
       {
         label: 'Count',
         render: obj => {
           let countItem = this.state.displayProdItems.find(item => item.productItem.id === obj.id);
           obj.count = countItem ? countItem.count : 0;
 
-          return <Badge badgeStyle={obj.count > 0 ? 'info' : 'secondary'}>{obj.count}</Badge>
+          return (
+            <Fragment>
+              <Button linkBtn btnStyle="danger" size="sm" icon="minus-circle" disabled={obj.count === 0} onClick={() => this.changeCount(obj, false, countItem)} />
+              <Badge badgeStyle={obj.count > 0 ? 'info' : 'secondary'}>{obj.count}</Badge>
+              <Button linkBtn btnStyle="success" size="sm" icon="plus-circle" onClick={() => this.changeCount(obj, true, countItem)} />
+            </Fragment>
+          )
         }
       },
       { label: 'Name', selector: 'name' },
@@ -103,7 +137,7 @@ export class ProductItems extends Component {
       {
         icon: 'edit',
         clickHandler: obj => {
-
+          this.setState({ showModal: true, editObj: obj});
         }
       }
     ];
@@ -135,6 +169,16 @@ export class ProductItems extends Component {
               </div>
             </div>
           </div>
+
+          <Modal title="Edit Product Item" open={this.state.showModal}>
+            <ModalBody>
+              <Input label="Name" value={this.state.editItem.name || ''} onChange={() => {}} />
+            </ModalBody>
+            <ModalFooter>
+              <Button linkBtn onClick={this.closeModal}>Cancel</Button>
+              <Button>Submit</Button>
+            </ModalFooter>
+          </Modal>
       </Fragment>
     )
   }
