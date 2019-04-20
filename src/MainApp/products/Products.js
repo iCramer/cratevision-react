@@ -39,7 +39,6 @@ export class Products extends Component {
         { label: 'Name',
           render: obj => <Link to={'/products/' + obj.id + '/product-info'}>{obj.name}</Link>
         },
-        { label: 'Stock', selector: 'stock' },
         { label: 'MSRP', selector: 'msrp' },
         {
           label: 'Status',

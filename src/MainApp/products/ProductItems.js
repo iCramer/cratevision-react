@@ -89,16 +89,18 @@ export class ProductItems extends Component {
       countObj = { productItemQuantities: [countItem] };
     }
     else {
-      countObj = { productItemQuantities: [{ count: 0, productItem: item }] };
+      countObj = { productItemQuantities: [{ count: 0, productItem: { id: item.id }}] };
     }
     let count = countObj.productItemQuantities[0].count;
     count = add ? count + 1 : count - 1;
+    countObj.productItemQuantities[0].count = count;
 
     API.put(`product/${this.state.id}`, countObj).then(resp => {
       this.setState({
         product: resp.data,
         displayProdItems: resp.data.productItemQuantities
       });
+      this.calculateCost();
     }).catch(error => {
       console.log(error.response)
     });
