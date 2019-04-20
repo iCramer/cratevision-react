@@ -76,9 +76,9 @@ export class ProductItems extends Component {
 
   changeCount = (item, evt, countItem) => {
     let prodItemQty = this.state.product.productItemQuantities;
-    let count = parseInt(evt.target.value);
+    let count = evt.target.value !== '' ? parseInt(evt.target.value) : '';
     if (countItem) {
-      if(count === 0) {
+      if (count === 0) {
         let index = prodItemQty.findIndex(obj => obj.productItem.id === item.id);
         prodItemQty.splice(index, 1);
       }
@@ -91,6 +91,13 @@ export class ProductItems extends Component {
     }
     this.calculateCost();
     this.setState({ saveDisabled: false });
+  }
+
+  handleCountBlur = (item, evt, countItem) => {
+    if(evt.target.value === '') {
+      evt.target.value = 0;
+      this.changeCount(item, evt, countItem);
+    }
   }
 
   closeModal = () => {
@@ -117,7 +124,7 @@ export class ProductItems extends Component {
 
           return (
             <Fragment>
-              <CounterInput value={obj.count} max="10" onChange={(evt) => this.changeCount(obj, evt, countItem)} />
+              <CounterInput value={obj.count} max="10" onBlur={(evt) => this.handleCountBlur(obj, evt, countItem)} onChange={(evt) => this.changeCount(obj, evt, countItem)} />
             </Fragment>
           )
         }

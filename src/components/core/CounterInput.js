@@ -5,10 +5,16 @@ import { Button } from './Button';
 
 export const CounterInput = ({label, value, onChange, max, ...props}) => {
   let getInputClass = () => {
-    if(value > 0) {
-      return 'has-count';
+    return value > 0 ? 'has-count' : null;
+  }
+
+  let getValue = () => {
+    if(value === '' || isNaN(value)) {
+      return 0;
     }
-    return null;
+    else {
+      return parseInt(value);
+    }
   }
 
   return (
@@ -16,9 +22,9 @@ export const CounterInput = ({label, value, onChange, max, ...props}) => {
       {label &&
         <label>{label}</label>
       }
-      <Button linkBtn onClick={onChange} size="sm" value={parseInt(value) - 1} disabled={value <= 0} icon="chevron-left" />
+      <Button linkBtn onClick={onChange} size="sm" value={getValue() - 1} disabled={getValue() <= 0} icon="chevron-left" />
       <input type="number" className={getInputClass()} onChange={onChange} value={value} {...props} max={max} />
-      <Button linkBtn onClick={onChange} size="sm" value={parseInt(value) + 1} disabled={value === max} icon="chevron-right" />
+      <Button linkBtn onClick={onChange} size="sm" value={getValue() + 1} disabled={getValue() === parseInt(max)} icon="chevron-right" />
     </div>
   )
 }
