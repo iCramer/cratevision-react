@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { Panel, Button, ListGroup, ListGroupItem, Badge, Input } from '../../components/core';
+import { Panel, Button, ListGroup, ListGroupItem, Badge, Input, CounterInput } from '../../components/core';
 import { Table } from '../../components/Table';
 import { Modal, ModalFooter, ModalBody } from '../../components/Modal';
 import API from '../../services/api';
@@ -15,12 +15,12 @@ export class ProductItems extends Component {
       id: this.props.match.params.id,
       product: {},
       productItems: [],
-      displayProdItems: [],
       cost: 0,
       profit: 0,
       chartData: {},
       editItem: {},
-      showModal: false
+      showModal: false,
+      saveDisabled: true
     }
 
     this.getProduct();
@@ -30,8 +30,7 @@ export class ProductItems extends Component {
   getProduct() {
     API.get('product/' + this.state.id).then(resp => {
       this.setState({
-        product: resp.data,
-        displayProdItems: resp.data.productItemQuantities
+        product: resp.data
       });
       this.calculateCost();
     }).catch(error => {
@@ -58,12 +57,12 @@ export class ProductItems extends Component {
     product.productItemQuantities.forEach( item => {
       prodItemsCost += item.productItem.itemCost * item.count;
     });
-    const cost = (fees + prodItemsCost).toFixed(2);
-    let profit = product.msrp - cost;
+    prodItemsCost = prodItemsCost.toFixed(2);
+    const cost = fees + prodItemsCost;
+    let profit = (product.msrp - cost).toFixed(2);
     if(profit < 0) {
       profit = 0;
     }
-
     this.setState({
       chartData: {
         labels: [`MSRP - ${product.msrp}`, `Fees - ${fees}`, `Product Cost - ${prodItemsCost}`, `Profit - ${profit}`],
@@ -75,55 +74,50 @@ export class ProductItems extends Component {
     })
   }
 
-  getItemCount() {
-    let count = 0;
-    this.state.displayProdItems.forEach( item => {
-      count += item.count;
-    });
-    return count;
-  };
-
-  changeCount = (item, add, countItem) => {
-    let countObj;
+  changeCount = (item, evt, countItem) => {
+    let prodItemQty = this.state.product.productItemQuantities;
+    let count = parseInt(evt.target.value);
     if (countItem) {
-      countObj = { productItemQuantities: [countItem] };
+      if(count === 0) {
+        let index = prodItemQty.findIndex(obj => obj.productItem.id === item.id);
+        prodItemQty.splice(index, 1);
+      }
+      else {
+        countItem.count = count;
+      }
     }
     else {
-      countObj = { productItemQuantities: [{ count: 0, productItem: { id: item.id }}] };
+      prodItemQty.push({ count: count, productItem: item });
     }
-    let count = countObj.productItemQuantities[0].count;
-    count = add ? count + 1 : count - 1;
-    countObj.productItemQuantities[0].count = count;
-
-    API.put(`product/${this.state.id}`, countObj).then(resp => {
-      this.setState({
-        product: resp.data,
-        displayProdItems: resp.data.productItemQuantities
-      });
-      this.calculateCost();
-    }).catch(error => {
-      console.log(error.response)
-    });
+    this.calculateCost();
+    this.setState({ saveDisabled: false });
   }
 
   closeModal = () => {
     this.setState({ showModal: false });
   }
 
+  save = () => {
+    API.put(`product/${this.state.id}`, this.state.product).then(resp => {
+      this.setState({ product: resp.data });
+      this.calculateCost();
+    }).catch(error => {
+      console.log(error.response)
+    });
+  }
+
   render() {
-    let productItemQty = this.state.displayProdItems;
+    let productItemQty = this.state.product.productItemQuantities || [];
     let prodItemCols = [
       {
         label: 'Count',
         render: obj => {
-          let countItem = this.state.displayProdItems.find(item => item.productItem.id === obj.id);
+          let countItem = productItemQty.find(item => item.productItem.id === obj.id);
           obj.count = countItem ? countItem.count : 0;
 
           return (
             <Fragment>
-              <Button linkBtn btnStyle="danger" size="sm" icon="minus-circle" disabled={obj.count === 0} onClick={() => this.changeCount(obj, false, countItem)} />
-              <Badge badgeStyle={obj.count > 0 ? 'info' : 'secondary'}>{obj.count}</Badge>
-              <Button linkBtn btnStyle="success" size="sm" icon="plus-circle" onClick={() => this.changeCount(obj, true, countItem)} />
+              <CounterInput value={obj.count} max="10" onChange={(evt) => this.changeCount(obj, evt, countItem)} />
             </Fragment>
           )
         }
@@ -148,7 +142,7 @@ export class ProductItems extends Component {
       <Fragment>
           <div className="row">
             <div className="col-sm-8">
-              <Panel accent="blue" title="Additional Product Items">
+              <Panel accent="blue" title="Additional Product Items" utility={<Button onClick={this.save} disabled={this.state.saveDisabled}>Save</Button>}>
                 <Table records={this.state.productItems} columns={prodItemCols} actions={actions} />
               </Panel>
             </div>
@@ -157,7 +151,7 @@ export class ProductItems extends Component {
               <Panel accent="pink" title="Cost Breakdown">
                 <Doughnut data={this.state.chartData} legend={{position: 'left', labels: {boxWidth: 15, fontSize: 16, fontColor: '#444'}}} height={90} />
               </Panel>
-              <Panel accent="blue" title="Included Product Items" utility={<Badge badgeStyle="success"><strong>{this.getItemCount()}</strong></Badge>}>
+              <Panel accent="blue" title="Included Product Items">
                 <ListGroup>
                 { productItemQty && productItemQty.map( (item, index) => {
                   return (

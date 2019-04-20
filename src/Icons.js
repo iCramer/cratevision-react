@@ -21,8 +21,10 @@ import {
   faScroll,
   faBell,
   faEdit,
-  faPlusCircle,
-  faMinusCircle
+  faPlus,
+  faMinus,
+  faChevronRight,
+  faChevronLeft
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -60,6 +62,8 @@ library.add(
   faReceipt,
   faScroll,
   faBell,
-  faPlusCircle,
-  faMinusCircle
+  faPlus,
+  faMinus,
+  faChevronRight,
+  faChevronLeft
 );

@@ -7,6 +7,7 @@ import { Panel } from './Panel';
 import { PrivateRoute } from './PrivateRoute';
 import { TitleBar } from './TitleBar';
 import { Input } from './Input';
+import { CounterInput } from './CounterInput';
 import { Tabs } from './Tabs';
 
 export {
@@ -21,5 +22,6 @@ export {
   PrivateRoute,
   TitleBar,
   Input,
+  CounterInput,
   Tabs
 }

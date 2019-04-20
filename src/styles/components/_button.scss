@@ -1,8 +1,8 @@
 @mixin disabledState($bg: transparent, $color: #fff, $border: transparent) {
   &:disabled {
-    background: lighten($bg, 20%);
-    color: lighten($color, 20%);
-    border-color: lighten($border, 20%);
+    background: rgba($bg, .6);
+    color: rgba($color, .6);
+    border-color: rgba($border, .6);
   }
 }
 
@@ -10,6 +10,7 @@
   color: #fff;
   border-radius: 10rem;
   border: none;
+  transition: all .2s ease;
 
   &-primary {
     background-color: $primary;
@@ -68,7 +69,7 @@
 
   &-link {
     border-radius: 0;
-    background: none;
+    background: none !important;
     border: none;
     color: $info;
   }
@@ -89,6 +90,10 @@
   &:focus {
     outline: 1px solid rgba(0, 109, 187, .4);
     box-shadow: 0 0 3px 2px rgba(0, 109, 187, .3);
+  }
+
+  & > * {
+    pointer-events: none;
   }
 
   &-centered {
