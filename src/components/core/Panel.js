@@ -15,7 +15,7 @@ export const Panel = ({className, title, accent, sticky, utility, ...props}) => 
     <div className={classSet} {...props}>
       {title &&
         <header className="panel-header">
-          <h5>{title}</h5>
+          <h5 className="panel-title">{title}</h5>
           { utility &&
             <div className="panel-utility">
               {utility}

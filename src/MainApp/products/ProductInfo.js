@@ -94,7 +94,7 @@ export class ProductInfo extends Component {
             <div className="col">
               <Panel accent="yellow" title="Fees">
                 { product.fees && !product.fees.length &&
-                  <NoResults header="No Fees Assigned" icon="hand-holding-usd" action={() => console.log('click')} btnLabel="Add Fee" />
+                  <NoResults header="No Fees Assigned" icon="coins" action={() => console.log('click')} btnLabel="Add Fee" />
                 }
                 <ListGroup iconList>
                 {product.fees && product.fees.map( (fee, index) => {

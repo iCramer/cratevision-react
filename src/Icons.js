@@ -24,7 +24,8 @@ import {
   faPlus,
   faMinus,
   faChevronRight,
-  faChevronLeft
+  faChevronLeft,
+  faCoins
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -65,5 +66,6 @@ library.add(
   faPlus,
   faMinus,
   faChevronRight,
-  faChevronLeft
+  faChevronLeft,
+  faCoins
 );
