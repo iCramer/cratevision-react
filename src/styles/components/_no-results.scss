@@ -1,0 +1,17 @@
+.no-results {
+  text-align: center;
+
+  .no-results-body {
+    color: $gray-500;
+  }
+
+  .no-results-icon {
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    color: $gray-300;
+  }
+
+  button {
+    margin-top: .5rem;
+  }
+}

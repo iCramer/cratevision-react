@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { Panel, Button, ListGroup, ListGroupItem, Badge } from '../../components/core';
+import { Panel, Button, ListGroup, ListGroupItem, Badge, NoResults } from '../../components/core';
 import API from '../../services/api';
 
 import { Doughnut } from 'react-chartjs-2';
@@ -40,21 +40,21 @@ export class ProductInfo extends Component {
     product.productItemQuantities.forEach( item => {
       prodItemsCost += item.productItem.itemCost * item.count;
     });
-    const cost = (fees + prodItemsCost).toFixed(2);
-    let profit = product.msrp - cost;
+    prodItemsCost = prodItemsCost.toFixed(2);
+    const cost = fees + prodItemsCost;
+    let profit = (product.msrp - cost).toFixed(2);
     if(profit < 0) {
       profit = 0;
     }
-
     this.setState({
       chartData: {
-        labels: ['MSRP', 'Fees', 'Product Cost', 'Profit'],
+        labels: [`MSRP - ${product.msrp}`, `Fees - ${fees}`, `Product Cost - ${prodItemsCost}`, `Profit - ${profit}`],
         datasets: [{
           data: [product.msrp, fees, prodItemsCost, profit],
           backgroundColor: ['#ff6384', '#ffcd56', '#36a2eb', '#00ad10']
         }]
       }
-    })
+    });
   }
 
   render() {
@@ -72,21 +72,18 @@ export class ProductInfo extends Component {
 
     return (
       <Fragment>
-          <div className="row full-height-cols">
+          <div className="row">
             <div className="col">
               <Panel accent="blue" title="Summary">
+                {product.images &&
+                  <img className="product-img" src={product.images[0].path} alt={product.images[0].name} />
+                }
                 <ListGroup iconList>
                   <ListGroupItem justifyContent icon="address-card">
                     Name <span>{product.name}</span>
                   </ListGroupItem>
                   <ListGroupItem justifyContent icon="tag">
                     MSRP <span>{product.msrp}</span>
-                  </ListGroupItem>
-                  <ListGroupItem justifyContent icon="hand-holding-usd">
-                    Cost <span>{this.state.cost}</span>
-                  </ListGroupItem>
-                  <ListGroupItem justifyContent icon="money-bill-alt">
-                    Profit <span>{this.state.profit}</span>
                   </ListGroupItem>
                   <ListGroupItem justifyContent icon="ellipsis-h">
                     Status <Badge badgeType="blip" badgeStyle={statusStyle}>{product.status && product.status.name}</Badge>
@@ -96,6 +93,9 @@ export class ProductInfo extends Component {
             </div>
             <div className="col">
               <Panel accent="yellow" title="Fees">
+                { product.fees && !product.fees.length &&
+                  <NoResults header="No Fees Assigned" icon="hand-holding-usd" action={() => console.log('click')} btnLabel="Add Fee" />
+                }
                 <ListGroup iconList>
                 {product.fees && product.fees.map( (fee, index) => {
                   return (
@@ -109,7 +109,7 @@ export class ProductInfo extends Component {
             </div>
             <div className="col">
               <Panel accent="pink" title="Cost Breakdown">
-                <Doughnut data={this.state.chartData} height={200} />
+                <Doughnut data={this.state.chartData} legend={{position: 'left', labels: {boxWidth: 15, fontSize: 16, fontColor: '#444'}}} height={90} />
               </Panel>
             </div>
           </div>

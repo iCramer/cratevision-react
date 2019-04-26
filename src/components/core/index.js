@@ -9,6 +9,7 @@ import { TitleBar } from './TitleBar';
 import { Input } from './Input';
 import { CounterInput } from './CounterInput';
 import { Tabs } from './Tabs';
+import { NoResults } from './NoResults';
 
 export {
   Badge,
@@ -23,5 +24,6 @@ export {
   TitleBar,
   Input,
   CounterInput,
-  Tabs
+  Tabs,
+  NoResults
 }

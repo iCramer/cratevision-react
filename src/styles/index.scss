@@ -37,6 +37,7 @@
 @import "./components/modal";
 @import "./components/tabs";
 @import "./components/counter-input";
+@import "./components/no-results";
 
 body {
   background: $background-gray;
@@ -97,4 +98,10 @@ main {
   h2 {
     text-align: center;
   }
+}
+
+.product-img {
+  margin: 0 auto 20px;
+  display: block;
+  max-height: 209px;
 }

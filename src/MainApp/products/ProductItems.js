@@ -71,7 +71,7 @@ export class ProductItems extends Component {
           backgroundColor: ['#ff6384', '#ffcd56', '#36a2eb', '#00ad10']
         }]
       }
-    })
+    });
   }
 
   changeCount = (item, evt, countItem) => {
