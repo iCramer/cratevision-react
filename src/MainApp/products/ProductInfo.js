@@ -14,7 +14,7 @@ export class ProductInfo extends Component {
       product: {},
       cost: 0,
       profit: 0,
-      chartData: {},
+      chartData: {}
     }
 
     this.getProduct();
@@ -74,7 +74,7 @@ export class ProductInfo extends Component {
       <Fragment>
           <div className="row">
             <div className="col">
-              <Panel accent="blue" title="Summary">
+              <Panel title="Summary">
                 {product.images &&
                   <img className="product-img" src={product.images[0].path} alt={product.images[0].name} />
                 }
@@ -92,7 +92,7 @@ export class ProductInfo extends Component {
               </Panel>
             </div>
             <div className="col">
-              <Panel accent="yellow" title="Fees">
+              <Panel title="Fees">
                 { product.fees && !product.fees.length &&
                   <NoResults header="No Fees Assigned" icon="coins" action={() => console.log('click')} btnLabel="Add Fee" />
                 }
@@ -108,7 +108,7 @@ export class ProductInfo extends Component {
               </Panel>
             </div>
             <div className="col">
-              <Panel accent="pink" title="Cost Breakdown">
+              <Panel title="Cost Breakdown">
                 <Doughnut data={this.state.chartData} legend={{position: 'left', labels: {boxWidth: 15, fontSize: 16, fontColor: '#444'}}} height={90} />
               </Panel>
             </div>

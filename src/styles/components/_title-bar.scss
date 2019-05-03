@@ -1,7 +1,7 @@
 .title-bar {
   background: $gray-100;
   border-top: 1px solid $gray-400;
-  margin-bottom: 15px;
+  margin-bottom: $grid-gutter-width;
   border-bottom: 2px solid $gray-400;
   min-height: 85px;
   border-bottom: 2px solid #dee2e6;

@@ -64,6 +64,11 @@ main {
   padding-bottom: 40px;
 }
 
+.container, .container-fluid {
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+}
+
 .row {
   &.full-height-cols {
     & > * {

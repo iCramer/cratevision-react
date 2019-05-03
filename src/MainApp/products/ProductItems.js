@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { Doughnut } from 'react-chartjs-2';
 
 import { Panel, Button, ListGroup, ListGroupItem, Badge, Input, CounterInput } from '../../components/core';
 import { Table } from '../../components/Table';
-import { Modal, ModalFooter, ModalBody } from '../../components/Modal';
+import { EditProductItem } from './EditProductItem';
 import API from '../../services/api';
-
-import { Doughnut } from 'react-chartjs-2';
 
 export class ProductItems extends Component {
   constructor(props) {
@@ -140,7 +139,7 @@ export class ProductItems extends Component {
       {
         icon: 'edit',
         clickHandler: obj => {
-          this.setState({ showModal: true, editObj: obj});
+          this.setState({ showModal: true, editItem: obj});
         }
       }
     ];
@@ -149,16 +148,16 @@ export class ProductItems extends Component {
       <Fragment>
           <div className="row">
             <div className="col-sm-8">
-              <Panel accent="blue" title="Additional Product Items" utility={<Button onClick={this.save} disabled={this.state.saveDisabled}>Save</Button>}>
+              <Panel title="Additional Product Items" utility={<Button onClick={this.save} disabled={this.state.saveDisabled}>Save</Button>}>
                 <Table records={this.state.productItems} columns={prodItemCols} actions={actions} />
               </Panel>
             </div>
             <div className="col-sm-4">
             <div className="sticky">
-              <Panel accent="pink" title="Cost Breakdown">
+              <Panel title="Cost Breakdown">
                 <Doughnut data={this.state.chartData} legend={{position: 'left', labels: {boxWidth: 15, fontSize: 16, fontColor: '#444'}}} height={90} />
               </Panel>
-              <Panel accent="blue" title="Included Product Items">
+              <Panel title="Included Product Items">
                 <ListGroup>
                 { productItemQty && productItemQty.map( (item, index) => {
                   return (
@@ -173,15 +172,7 @@ export class ProductItems extends Component {
             </div>
           </div>
 
-          <Modal title="Edit Product Item" open={this.state.showModal}>
-            <ModalBody>
-              <Input label="Name" value={this.state.editItem.name || ''} onChange={() => {}} />
-            </ModalBody>
-            <ModalFooter>
-              <Button linkBtn onClick={this.closeModal}>Cancel</Button>
-              <Button>Submit</Button>
-            </ModalFooter>
-          </Modal>
+          <EditProductItem key={this.state.editItem.id} open={this.state.showModal} toggleModal={this.closeModal} item={this.state.editItem} />
       </Fragment>
     )
   }
