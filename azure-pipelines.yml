@@ -33,7 +33,7 @@ steps:
       serverUrl: 'ftps://208.68.38.194'
       username: 'pipelines'
       password: 'Automated!914'
-      rootDirectory: '$(Build.ArtifactStagingDirectory)'
+      rootDirectory: '$(Build.ArtifactStagingDirectory)/build'
       filePatterns: '**' 
       remoteDirectory: '/jobs/react/$(Build.BuildId)/'
       clean: false 
