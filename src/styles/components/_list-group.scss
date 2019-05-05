@@ -18,22 +18,19 @@ $prefix-diameter: 30px;
   &.icon-list {
     margin-left: $prefix-diameter / 2;
     border-left: 1px solid $gray-400;
-
-    li {
-      line-height: 2rem;
-    }
   }
 
   li {
     position: relative;
     align-items: center;
-    margin-bottom: .5rem;
+    margin-bottom: .7rem;
     font-weight: 600;
     font-size: .9rem;
 
     span, p {
       font-weight: normal;
       margin: 0;
+      line-height: 1.25rem;
     }
 
     &.item-prefixed {
