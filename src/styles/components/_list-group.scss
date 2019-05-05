@@ -13,11 +13,11 @@ $prefix-diameter: 30px;
   padding: 0;
   list-style-type: none;
   margin: 0;
+  margin-bottom: 1rem;
 
   &.icon-list {
     margin-left: $prefix-diameter / 2;
     border-left: 1px solid $gray-400;
-    margin-bottom: 0;
 
     li {
       line-height: 2rem;
@@ -33,11 +33,11 @@ $prefix-diameter: 30px;
 
     span, p {
       font-weight: normal;
+      margin: 0;
     }
 
     &.item-prefixed {
       padding-left: ($prefix-diameter / 2) + 5px;
-      margin-bottom: 5px;
       padding-bottom: 5px;
       border-bottom: 1px solid $gray-100;
 

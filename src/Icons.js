@@ -27,7 +27,9 @@ import {
   faChevronLeft,
   faCoins,
   faTimes,
-  faInventory
+  faInventory,
+  faMapMarkerAlt,
+  faQuoteLeft
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -38,7 +40,8 @@ import {
   far,
   faBoxUsd,
   faTally,
-  faCommentAltLines
+  faCommentAltLines,
+  faIdCardAlt
 } from '@fortawesome/pro-regular-svg-icons';
 
 import {
@@ -77,5 +80,8 @@ library.add(
   faBoxUsd,
   faTally,
   faCommentAltLines,
-  faInventory
+  faInventory,
+  faMapMarkerAlt,
+  faQuoteLeft,
+  faIdCardAlt
 );
