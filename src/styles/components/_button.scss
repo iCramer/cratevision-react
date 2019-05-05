@@ -11,6 +11,7 @@
   border-radius: 3px;
   border: none;
   transition: all .2s ease;
+  line-height: 100%;
 
   &-primary {
     background-color: $primary;
@@ -81,7 +82,7 @@
     padding: .15rem .25rem;
   }
   &-md {
-    padding: .45rem .8rem;
+    padding: .6rem 1.3rem;
   }
   &-lg {
     padding: .55rem .9rem;

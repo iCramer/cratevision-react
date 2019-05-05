@@ -54,13 +54,13 @@ export class ProductOrderDetails extends Component {
             <div className="col">
               <Panel accent="blue" title="Summary">
                 <ListGroup iconList>
-                  <ListGroupItem justifyContent icon="address-card">
+                  <ListGroupItem icon="address-card">
                     Delivery Date <span>{order.deliveredOn}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent icon="tag">
+                  <ListGroupItem icon="tag">
                     Internal Id <span>{order.internalId}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent icon="ellipsis-h">
+                  <ListGroupItem icon="ellipsis-h">
                     Status <Badge type="blip" badgeStyle={statusStyle}>{order.status && order.status.name}</Badge>
                   </ListGroupItem>
                 </ListGroup>
@@ -71,7 +71,7 @@ export class ProductOrderDetails extends Component {
                 <ListGroup iconList>
                 {order.fees && order.fees.map( (fee, index) => {
                   return (
-                    <ListGroupItem key={'fee-' + index} icon="receipt" color="yellow" justifyContent>
+                    <ListGroupItem key={'fee-' + index} icon="receipt" color="yellow">
                       {fee.name} <span>{fee.price}</span>
                     </ListGroupItem>
                   )

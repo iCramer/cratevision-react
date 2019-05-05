@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 
-import { Panel, Button, Input, ListGroupItem, ListGroup, ListTitle, Badge, Tab, NoResults } from '../../components/core';
+import { Panel, Button, Input, ListGroupItem, ListGroup, ListTitle, Badge, Tab, NoResults, Select } from '../../components/core';
 import { Modal, ModalFooter, ModalBody } from '../../components/Modal';
 import { SliderPanel } from '../../components/SliderPanel';
+
+import { BasicInfo } from './product-items/BasicInfo';
+import { Inventory } from './product-items/Inventory';
+import { Supplier } from './product-items/Supplier';
+import { Notes } from './product-items/Notes';
+
 import API from '../../services/api';
 
 export class ProductItemPanel extends Component {
@@ -11,139 +17,65 @@ export class ProductItemPanel extends Component {
 
     this.state = {
       item: props.item,
-      changePic: props.item.picture && props.item.picture.path
+      showModal: false
     };
   }
 
   updateItem = (evt, field) => {
     let newItem = this.state.item;
     newItem[field] = evt.target.value;
-    this.setState({item: newItem})
+    this.setState({item: newItem});
+  }
+
+  closeModal = () => {
+    this.setState({ showModal: false });
+  }
+
+  openModal = (title, content) => {
+    this.setState({ showModal: true, getModalContent: content, modalTitle: title });
+  }
+
+  save = () => {
+    API.put('productitem/' + this.state.item.id, this.state.item).then( resp => {
+
+    }).catch(error => {
+      console.log(error.response)
+    });
+
+    this.setState({ showModal: false });
   }
 
   render() {
-    const item = this.state.item;
+    let item = this.state.item;
     return (
       <SliderPanel open={this.props.open} title="Product Item Details" closePanel={this.props.closePanel} item={this.state.item}>
         <Tab title="Item Info" tabKey="basic-info">
-          { item.picture && item.picture.path &&
-            <img src={item.picture.path} alt={item.picture.name} />
-          }
-          <ListGroup title="Basic Info" iconList>
-            <ListGroupItem icon="address-card" justifyContent>
-              Name<span>{item.name}</span>
-            </ListGroupItem>
-            <ListGroupItem icon="hand-holding-usd" justifyContent>
-              Item Cost<Badge>{item.itemCost}</Badge>
-            </ListGroupItem>
-            <ListGroupItem icon={['far', 'box-usd']} justifyContent>
-              Case Cost<Badge>{item.caseCost}</Badge>
-            </ListGroupItem>
-            <ListGroupItem icon={['far', 'tally']} justifyContent>
-              Items per Case<Badge>{item.caseQty}</Badge>
-            </ListGroupItem>
-            <ListGroupItem icon={['far', 'comment-alt-lines']}>
-              Description<p>{item.description}</p>
-            </ListGroupItem>
-          </ListGroup>
-
-          <ListTitle>Product Identifiers</ListTitle>
-          { item.productIdentifiers && !item.productIdentifiers.length &&
-            <NoResults header="No Product Identifiers Assigned" icon={['far', 'id-card-alt']} action={() => console.log('click')} btnLabel="Create One" />
-          }
-          { item.productIdentifiers && item.productIdentifiers.map( (id, index) => {
-            return (
-              <ListGroup>
-                <ListGroupItem>
-                  Name<span>{id.name}</span>
-                </ListGroupItem>
-                <ListGroupItem>
-                  Identifier<span>{id.identifier}</span>
-                </ListGroupItem>
-                <ListGroupItem>
-                  Type<span>{id.type}</span>
-                </ListGroupItem>
-              </ListGroup>
-            )
-          })}
+          <BasicInfo prodItem={item} key="basic-info-panel" />
         </Tab>
 
         <Tab title="Inventory" tabKey="inventory">
-        { item.inventory && !item.inventory.length &&
-          <NoResults header="No Inventory Found" icon="inventory" action={() => console.log('click')} btnLabel="Create One" />
-        }
-        { item.inventory && item.inventory.map( (obj, index) => {
-            return (
-              <ListGroup iconList>
-                <ListGroupItem icon="address-card" justifyContent>
-                  Name<span>{obj.name}</span>
-                </ListGroupItem>
-                <ListGroupItem icon="address-card" justifyContent>
-                  Warehouse<span>{obj.warehouse.name}</span>
-                </ListGroupItem>
-                <ListGroupItem icon="address-card" justifyContent>
-                  Availible<span>{obj.availible}</span>
-                </ListGroupItem>
-                <ListGroupItem icon="address-card" justifyContent>
-                  On Hande<span>{obj.onHand}</span>
-                </ListGroupItem>
-                <ListGroupItem icon="address-card" justifyContent>
-                  Reserved<span>{obj.reserved}</span>
-                </ListGroupItem>
-              </ListGroup>
-            )
-          })
-        }
+          <Inventory prodItem={item} />
         </Tab>
 
         <Tab title="Supplier" tabKey="supplier">
-          { item.supplier && item.supplier.logo && item.supplier.logo.path &&
-            <img src={item.supplier.logo.path} alt={item.supplier.logo.name} />
-          }
-          { item.supplier &&
-            <ListGroup iconList>
-              <ListGroupItem icon="address-card" justifyContent>
-                Name<span>{item.supplier.name}</span>
-              </ListGroupItem>
-              <ListGroupItem icon="map-marker-alt">
-                Address
-                { item.supplier.address.addressLine1 && <p>{item.supplier.address.addressLine1}</p> }
-                { item.supplier.address.addressLine2 && <p>{item.supplier.address.addressLine2}</p> }
-                { item.supplier.address.city && <p>{item.supplier.address.city}</p> }
-                { item.supplier.address.state && <p>{item.supplier.address.state}</p> }
-                { item.supplier.address.zipCode && <p>{item.supplier.address.zipCode}</p> }
-                { item.supplier.address.country && <p>{item.supplier.address.country}</p> }
-              </ListGroupItem>
-            </ListGroup>
-          }
-          { item.supplier && item.supplier.notes &&
-            <ListGroup title="Notes" iconList>
-              { item.supplier.notes && item.supplier.notes.length &&
-                item.supplier.notes.map( (note, index) => {
-                  return (
-                    <ListGroupItem icon="quote-left" key={index}>
-                      {note.title}<p>{note.description}</p>
-                    </ListGroupItem>
-                  )
-                })
-              }
-            </ListGroup>
-          }
-          </Tab>
-
-          <Tab title="Notes" tabKey="notes">
-            <ListGroup iconList>
-              { item.notes && item.notes.length &&
-                item.notes.map( (note, index) => {
-                  return (
-                    <ListGroupItem icon="quote-left" key={index}>
-                      {note.title}<p>{note.description}</p>
-                    </ListGroupItem>
-                  )
-                })
-              }
-            </ListGroup>
+          <Supplier prodItem={item} />
         </Tab>
+
+        <Tab title="Notes" tabKey="notes">
+          <Notes prodItem={item} />
+        </Tab>
+
+        <Modal title={this.state.modalTitle} open={this.state.showModal}>
+          <ModalBody>
+            { this.state.getModalContent &&
+              this.state.getModalContent()
+            }
+          </ModalBody>
+          <ModalFooter>
+            <Button linkBtn onClick={this.closeModal}>Cancel</Button>
+            <Button type="submit" onClick={this.save}>Save</Button>
+          </ModalFooter>
+        </Modal>
       </SliderPanel>
     )
   }

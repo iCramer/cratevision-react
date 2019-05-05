@@ -7,6 +7,12 @@ $prefix-diameter: 30px;
   border-bottom: 1px solid $gray-400;
   padding-bottom: 2px;
   text-transform: uppercase;
+  margin-bottom: 1rem;
+  clear: both;
+
+  .list-group-edit {
+    float: right;
+  }
 }
 
 .list-group {
@@ -26,6 +32,7 @@ $prefix-diameter: 30px;
     margin-bottom: .7rem;
     font-weight: 600;
     font-size: .9rem;
+    display: flex;
 
     span, p {
       font-weight: normal;

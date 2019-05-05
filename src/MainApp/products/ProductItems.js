@@ -158,7 +158,7 @@ export class ProductItems extends Component {
                 <ListGroup>
                 { productItemQty && productItemQty.map( (item, index) => {
                   return (
-                    <ListGroupItem key={index} justifyContent>
+                    <ListGroupItem key={index}>
                       {item.productItem.name} <Badge badgeStyle="info">{item.count}</Badge>
                     </ListGroupItem>
                   )

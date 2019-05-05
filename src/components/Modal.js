@@ -16,7 +16,7 @@ export const Modal = (props) => {
     <div className={modalClassSet} tabIndex="-1" role="dialog">
       <div className={dialogClassSet} role="document">
         <div className="modal-header">
-          <h4 className="modal-title">{props.title}</h4>
+          <h5 className="modal-title">{props.title}</h5>
         </div>
         {props.children}
       </div>

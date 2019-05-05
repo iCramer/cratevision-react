@@ -9,6 +9,7 @@ $panel-width: 450px;
   height: 100vh;
   right: -$panel-width;
   transition: all .2s ease-out;
+  transition-delay: .2s;
   background: $gray-100;
   z-index: 99;
   box-shadow: 0 0px 4px 0 rgba(0, 0, 0, .2);

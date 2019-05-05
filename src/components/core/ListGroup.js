@@ -2,16 +2,25 @@ import React, { Fragment } from 'react';
 import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const ListTitle = ({ children, ...props }) => {
-  return <h6 className="list-group-title" {...props}>{children}</h6>
+import { Button } from './Button';
+
+export const ListTitle = ({ children, editClick, ...props }) => {
+  return (
+    <h6 className="list-group-title" {...props}>
+      {children}
+      { editClick &&
+        <Button linkBtn className="list-group-edit" size="xs" onClick={editClick} icon="edit" />
+      }
+    </h6>
+  )
 }
 
-export const ListGroup = ({children, className, iconList, title, ...props}) => {
+export const ListGroup = ({children, className, iconList, title, editClick, ...props}) => {
   let classSet = classnames('list-group', className, {'icon-list': iconList});
   return (
     <Fragment>
       { title &&
-        <ListTitle>{title}</ListTitle>
+        <ListTitle editClick={editClick}>{title}</ListTitle>
       }
       <ul className={classSet} {...props}>
         {children}
@@ -26,7 +35,7 @@ export const ListGroupItem = ({children, icon, color, className, justifyContent,
     className,
     {
       'justify-content-between': justifyContent,
-      'd-flex': justifyContent,
+      'flex-column align-items-start': !justifyContent,
       'item-prefixed': icon
     }
   );
@@ -51,5 +60,6 @@ export const ListGroupItem = ({children, icon, color, className, justifyContent,
 }
 
 ListGroupItem.defaultProps = {
-  color: 'blue'
+  color: 'blue',
+  justifyContent: true
 }

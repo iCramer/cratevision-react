@@ -79,13 +79,13 @@ export class ProductInfo extends Component {
                   <img className="product-img" src={product.images[0].path} alt={product.images[0].name} />
                 }
                 <ListGroup iconList>
-                  <ListGroupItem justifyContent icon="address-card">
+                  <ListGroupItem icon="address-card">
                     Name <span>{product.name}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent icon="tag">
+                  <ListGroupItem icon="tag">
                     MSRP <span>{product.msrp}</span>
                   </ListGroupItem>
-                  <ListGroupItem justifyContent icon="ellipsis-h">
+                  <ListGroupItem icon="ellipsis-h">
                     Status <Badge badgeType="blip" badgeStyle={statusStyle}>{product.status && product.status.name}</Badge>
                   </ListGroupItem>
                 </ListGroup>
@@ -99,7 +99,7 @@ export class ProductInfo extends Component {
                 <ListGroup iconList>
                 {product.fees && product.fees.map( (fee, index) => {
                   return (
-                    <ListGroupItem key={index} icon="receipt" color="yellow" justifyContent>
+                    <ListGroupItem key={index} icon="receipt" color="yellow">
                       {fee.name} <span>{fee.price}</span>
                     </ListGroupItem>
                   )
