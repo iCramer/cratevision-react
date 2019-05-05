@@ -1,5 +1,14 @@
 $prefix-diameter: 30px;
 
+.list-group-title {
+  font-size: .8rem;
+  font-weight: 600;
+  color: $gray-500;
+  border-bottom: 1px solid $gray-400;
+  padding-bottom: 2px;
+  text-transform: uppercase;
+}
+
 .list-group {
   padding: 0;
   list-style-type: none;
@@ -19,6 +28,12 @@ $prefix-diameter: 30px;
     position: relative;
     align-items: center;
     margin-bottom: .5rem;
+    font-weight: 600;
+    font-size: .9rem;
+
+    span, p {
+      font-weight: normal;
+    }
 
     &.item-prefixed {
       padding-left: ($prefix-diameter / 2) + 5px;

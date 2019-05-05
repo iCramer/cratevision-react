@@ -8,6 +8,7 @@ export const Button = ({children, icon, route, btnStyle, size, linkBtn, classNam
     'btn',
     `btn-${btnStyle}`,
     `btn-${size}`,
+    className,
     {
       'btn-link': linkBtn,
       'btn-centered': centered,

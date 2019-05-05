@@ -8,11 +8,19 @@
 
     .tab-link {
       padding: .25rem 0;
-      margin-right: 1rem;
+      margin-right: .75rem;
+      background: none;
+      border: none;
+      color: $primary;
 
       &.active {
         border-bottom: 4px solid $blue;
         display: block;
+      }
+
+      &:focus {
+        outline: none;
+        background: $gray-300
       }
     }
   }

@@ -3,7 +3,7 @@ import { Doughnut } from 'react-chartjs-2';
 
 import { Panel, Button, ListGroup, ListGroupItem, Badge, Input, CounterInput } from '../../components/core';
 import { Table } from '../../components/Table';
-import { EditProductItem } from './EditProductItem';
+import { ProductItemPanel } from './ProductItemPanel';
 import API from '../../services/api';
 
 export class ProductItems extends Component {
@@ -17,8 +17,8 @@ export class ProductItems extends Component {
       cost: 0,
       profit: 0,
       chartData: {},
-      editItem: {},
-      showModal: false,
+      selectedItem: {},
+      showDetails: false,
       saveDisabled: true
     }
 
@@ -99,8 +99,12 @@ export class ProductItems extends Component {
     }
   }
 
-  closeModal = () => {
-    this.setState({ showModal: false });
+  openDetails = (obj) => {
+    this.setState({ showDetails: true, selectedItem: obj });
+  }
+
+  closeDetails = () => {
+    this.setState({ showDetails: false, selectedItem: {} });
   }
 
   save = () => {
@@ -122,26 +126,19 @@ export class ProductItems extends Component {
           obj.count = countItem ? countItem.count : 0;
 
           return (
-            <Fragment>
-              <CounterInput value={obj.count} max="10" onBlur={(evt) => this.handleCountBlur(obj, evt, countItem)} onChange={(evt) => this.changeCount(obj, evt, countItem)} />
-            </Fragment>
+            <CounterInput value={obj.count} onBlur={(evt) => this.handleCountBlur(obj, evt, countItem)} onChange={(evt) => this.changeCount(obj, evt, countItem)} />
           )
         }
       },
-      { label: 'Name', selector: 'name' },
+      { label: 'Name',
+        render: obj => {
+          return <Button size="xs" linkBtn onClick={() => this.openDetails(obj)}>{obj.name}</Button>
+        }
+      },
       { label: 'Case Quantity', selector: 'caseQty' },
       { label: 'Case Cost', selector: 'caseCost' },
       { label: 'Item Cost', selector: 'itemCost' },
       { label: 'Supplier', selector: 'supplier.name' }
-    ];
-
-    const actions = [
-      {
-        icon: 'edit',
-        clickHandler: obj => {
-          this.setState({ showModal: true, editItem: obj});
-        }
-      }
     ];
 
     return (
@@ -149,7 +146,7 @@ export class ProductItems extends Component {
           <div className="row">
             <div className="col-sm-8">
               <Panel title="Additional Product Items" utility={<Button onClick={this.save} disabled={this.state.saveDisabled}>Save</Button>}>
-                <Table records={this.state.productItems} columns={prodItemCols} actions={actions} />
+                <Table records={this.state.productItems} columns={prodItemCols} />
               </Panel>
             </div>
             <div className="col-sm-4">
@@ -172,7 +169,7 @@ export class ProductItems extends Component {
             </div>
           </div>
 
-          <EditProductItem key={this.state.editItem.id} open={this.state.showModal} toggleModal={this.closeModal} item={this.state.editItem} />
+          <ProductItemPanel key={this.state.selectedItem.id} open={this.state.showDetails} closePanel={this.closeDetails} item={this.state.selectedItem} />
       </Fragment>
     )
   }

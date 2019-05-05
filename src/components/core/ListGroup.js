@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const ListGroup = ({children, className, iconList, ...props}) => {
+export const ListTitle = ({ children, ...props }) => {
+  return <h6 className="list-group-title" {...props}>{children}</h6>
+}
+
+export const ListGroup = ({children, className, iconList, title, ...props}) => {
   let classSet = classnames('list-group', className, {'icon-list': iconList});
   return (
-    <ul className={classSet} {...props}>
-      {children}
-    </ul>
+    <Fragment>
+      { title &&
+        <ListTitle>{title}</ListTitle>
+      }
+      <ul className={classSet} {...props}>
+        {children}
+      </ul>
+    </Fragment>
   )
 }
 

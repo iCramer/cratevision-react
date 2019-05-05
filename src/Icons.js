@@ -25,7 +25,9 @@ import {
   faMinus,
   faChevronRight,
   faChevronLeft,
-  faCoins
+  faCoins,
+  faTimes,
+  faInventory
 } from '@fortawesome/pro-solid-svg-icons';
 
 import {
@@ -33,7 +35,10 @@ import {
 } from '@fortawesome/pro-light-svg-icons';
 
 import {
-  far
+  far,
+  faBoxUsd,
+  faTally,
+  faCommentAltLines
 } from '@fortawesome/pro-regular-svg-icons';
 
 import {
@@ -67,5 +72,10 @@ library.add(
   faMinus,
   faChevronRight,
   faChevronLeft,
-  faCoins
+  faCoins,
+  faTimes,
+  faBoxUsd,
+  faTally,
+  faCommentAltLines,
+  faInventory
 );
