@@ -24,7 +24,7 @@ steps:
   displayName: 'npm install and build'
 - task: CopyFiles@2
   inputs:
-    contents: '**/*'
+    contents: '**/build'
     targetFolder: '$(Build.ArtifactStagingDirectory)'    
 - task: FtpUpload@1
   inputs:
@@ -33,7 +33,7 @@ steps:
       serverUrl: 'ftps://208.68.38.194'
       username: 'pipelines'
       password: 'Automated!914'
-      rootDirectory: '$(Build.ArtifactStagingDirectory)/build'
+      rootDirectory: '$(Build.ArtifactStagingDirectory)'
       filePatterns: '**' 
       remoteDirectory: '/jobs/react/$(Build.BuildId)/'
       clean: false 
