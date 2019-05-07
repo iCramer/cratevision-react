@@ -26,24 +26,25 @@ export class BasicInfo extends Component {
     }
   }
 
-  updateItem = (evt, field, obj, childField) => {
+  updateItem = (evt, obj, parentKey) => {
     let newItem = this.state.prodItem;
     const value = evt.target.value;
+    const name = evt.target.name;
 
-    if (obj && childField) {
-      let newObj = newItem[field].find(x => x.id === obj.id);
+    if (obj && parentKey) {
+      let newObj = newItem[parentKey].find(x => x.id === obj.id);
       if (newObj) {
-        newObj[childField] = value;
+        newObj[parentKey] = value;
       }
       else {
-        newItem[field].push({ [childField]: value });
+        newItem[parentKey].push({ [name]: value });
       }
     }
-    else if (childField && !obj) {
-      newItem[field][childField] = value;
+    else if (parentKey && !obj) {
+      newItem[parentKey][name] = value;
     }
     else {
-      newItem[field] = value;
+      newItem[name] = value;
     }
     this.setState({prodItem: newItem});
   }
@@ -70,23 +71,23 @@ export class BasicInfo extends Component {
   getBasicInfoModal = () => {
     const item = this.state.prodItem;
     return (
-      <form>
+      <form onSubmit={(evt) => console.log(evt)}>
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-              <Input key="info-name" label="Name" value={item.name} onChange={(evt) => this.updateItem(evt, 'name')} />
+              <Input key="info-name" label="Name" name="name" value={item.name} onChange={(evt) => this.updateItem(evt)} />
             </div>
             <div className="col-sm-4">
-              <Input key="info-item-cost" label="Item Cost" type="number" value={item.itemCost} onChange={(evt) => this.updateItem(evt, 'itemCost')} />
+              <Input key="info-item-cost" label="Item Cost" name="itemCost" type="number" value={item.itemCost} onChange={(evt) => this.updateItem(evt)} />
             </div>
             <div className="col-sm-4">
-              <Input key="info-case-cost" label="Case Cost" type="number" value={item.caseCost} onChange={(evt) => this.updateItem(evt, 'caseCost')} />
+              <Input key="info-case-cost" label="Case Cost" name="caseCost" type="number" value={item.caseCost} onChange={(evt) => this.updateItem(evt)} />
             </div>
             <div className="col-sm-4">
-              <Input key="info-per-case" label="Items Per Case" type="number" value={item.caseQty} onChange={(evt) => this.updateItem(evt, 'caseQty')} />
+              <Input key="info-per-case" label="Items Per Case" name="caseQty" type="number" value={item.caseQty} onChange={(evt) => this.updateItem(evt)} />
             </div>
             <div className="col-sm-12">
-              <Input key="info-desc" textarea label="Description" value={item.description} onChange={(evt) => this.updateItem(evt, 'description')} />
+              <Input key="info-desc" textarea label="Description" name="description" value={item.description} onChange={(evt) => this.updateItem(evt)} />
             </div>
           </div>
         </div>
@@ -113,13 +114,13 @@ export class BasicInfo extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
-              <Select key="prod-id-type" label="Type" value={item.type || ''} options={options} onChange={(evt) => this.updateItem(evt, 'productIdentifiers', item, 'type')} />
+              <Select key="prod-id-type" label="Type" name="type" value={item.type || ''} options={options} onChange={(evt) => this.updateItem(evt, item, 'productIdentifiers')} />
             </div>
             <div className="col-sm-5">
-              <Input key="prod-id-name" label="Name" value={item.name} onChange={(evt) => this.updateItem(evt, 'productIdentifiers', item, 'name')} />
+              <Input key="prod-id-name" label="Name" name="name" value={item.name} onChange={(evt) => this.updateItem(evt, item, 'productIdentifiers')} />
             </div>
             <div className="col-sm-4">
-              <Input key="prod-id" label="Identifier" value={item.identifier} onChange={(evt) => this.updateItem(evt, 'productIdentifiers', item, 'identifier')} />
+              <Input key="prod-id" label="Identifier" name="identifier" value={item.identifier} onChange={(evt) => this.updateItem(evt, item, 'productIdentifiers')} />
             </div>
           </div>
         </div>
