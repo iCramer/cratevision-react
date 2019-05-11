@@ -5,6 +5,7 @@ import { Modal, ModalFooter, ModalBody } from '../../components/Modal';
 import { SliderPanel } from '../../components/SliderPanel';
 
 import { BasicInfo } from './product-items/BasicInfo';
+import { ProductIdentifier } from './product-items/ProductIdentifier';
 import { Inventory } from './product-items/Inventory';
 import { Supplier } from './product-items/Supplier';
 import { Notes } from './product-items/Notes';
@@ -50,7 +51,8 @@ export class ProductItemPanel extends Component {
     return (
       <SliderPanel open={this.props.open} title="Product Item Details" closePanel={this.props.closePanel} item={this.state.item}>
         <Tab title="Item Info" tabKey="basic-info">
-          <BasicInfo prodItem={item} key="basic-info-panel" />
+          <BasicInfo prodItem={item} />
+          <ProductIdentifier prodItem={item} />
         </Tab>
 
         <Tab title="Inventory" tabKey="inventory">

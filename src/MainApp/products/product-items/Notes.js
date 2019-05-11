@@ -19,12 +19,6 @@ export class Notes extends Component {
     }
   }
 
-  updateItem = (evt, field) => {
-    let newItem = this.state.prodItem;
-    newItem[field] = evt.target.value;
-    this.setState({prodItem: newItem});
-  }
-
   closeModal = () => {
     this.setState({ showModal: false });
   }
@@ -34,7 +28,7 @@ export class Notes extends Component {
   }
 
   save = () => {
-    API.put('productitem/' + this.state.prodItem.id, this.state.prodItem).then( resp => {
+    API.put('productitem/' + this.props.prodItem.id, this.props.prodItem).then( resp => {
 
     }).catch(error => {
       console.log(error.response)
@@ -44,7 +38,7 @@ export class Notes extends Component {
   }
 
   render() {
-    let item = this.state.prodItem;
+    let item = this.props.prodItem;
     return (
       <Fragment>
         <ListGroup iconList>

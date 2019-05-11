@@ -23,7 +23,7 @@ export class Table extends Component {
             return (
               <TableRow
                 record={obj}
-                key={index}
+                key={`table-row-${index}`}
                 index={index}
                 columns={this.props.columns}
                 onRowClick={this.props.onRowClick}
