@@ -10,6 +10,7 @@ import {
 } from '../../../components/core';
 import { Modal, ModalFooter, ModalBody } from '../../../components/Modal';
 import API from '../../../services/api';
+import deepCopy from '../../../services/utils';
 
 export class Inventory extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ export class Inventory extends Component {
   openModal = (obj) => {
     let editItem;
     if(obj) {
-      editItem = obj;
+      editItem = deepCopy(obj);
     }
     else {
       editItem = { availible: '', onhand: '', warehouse: {}, reserved: '' };

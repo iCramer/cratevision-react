@@ -12,6 +12,8 @@ import { CounterInput } from './CounterInput';
 import { Tabs } from './Tabs';
 import { Tab } from './Tab';
 import { NoResults } from './NoResults';
+import { Loading } from './Loading';
+
 
 export {
   Badge,
@@ -30,5 +32,6 @@ export {
   CounterInput,
   Tabs,
   Tab,
-  NoResults
+  NoResults,
+  Loading
 }

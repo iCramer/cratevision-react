@@ -5,6 +5,7 @@ import { Panel, Button, ListGroup, ListGroupItem, Badge, Input, CounterInput } f
 import { Table } from '../../components/Table';
 import { ProductItemPanel } from './ProductItemPanel';
 import API from '../../services/api';
+import { ProductContext } from './ProductDetails';
 
 export class ProductItems extends Component {
   constructor(props) {
@@ -73,8 +74,8 @@ export class ProductItems extends Component {
     });
   }
 
-  changeCount = (item, evt, countItem) => {
-    let prodItemQty = this.state.product.productItemQuantities;
+  changeCount = (item, evt, countItem, updateTitleBtn) => {
+    let prodItemQty = this.state.product.productItemQuantities || [];
     let count = evt.target.value !== '' ? parseInt(evt.target.value) : '';
     if (countItem) {
       if (count === 0) {
@@ -90,6 +91,7 @@ export class ProductItems extends Component {
     }
     this.calculateCost();
     this.setState({ saveDisabled: false });
+    updateTitleBtn('Save', this.save, false);
   }
 
   handleCountBlur = (item, evt, countItem) => {
@@ -108,7 +110,8 @@ export class ProductItems extends Component {
   }
 
   save = () => {
-    API.put(`product/${this.state.id}`, this.state.product).then(resp => {
+    const body = { productItemQuantities: this.state.product.productItemQuantities }
+    API.put(`product/${this.state.id}`, body).then(resp => {
       this.setState({ product: resp.data });
       this.calculateCost();
     }).catch(error => {
@@ -126,7 +129,11 @@ export class ProductItems extends Component {
           obj.count = countItem ? countItem.count : 0;
 
           return (
-            <CounterInput value={obj.count} onBlur={(evt) => this.handleCountBlur(obj, evt, countItem)} onChange={(evt) => this.changeCount(obj, evt, countItem)} />
+            <ProductContext.Consumer>
+             {({ updateTitleBtn }) =>
+                <CounterInput value={obj.count} onBlur={(evt) => this.handleCountBlur(obj, evt, countItem)} onChange={(evt) => this.changeCount(obj, evt, countItem, updateTitleBtn)} />
+              }
+            </ProductContext.Consumer>
           )
         }
       },
@@ -145,7 +152,7 @@ export class ProductItems extends Component {
       <Fragment>
           <div className="row">
             <div className="col-sm-8">
-              <Panel title="Additional Product Items" utility={<Button onClick={this.save} disabled={this.state.saveDisabled}>Save</Button>}>
+              <Panel title="Additional Product Items">
                 <Table records={this.state.productItems} columns={prodItemCols} />
               </Panel>
             </div>

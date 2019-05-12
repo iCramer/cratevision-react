@@ -75,7 +75,7 @@ export class ProductInfo extends Component {
           <div className="row">
             <div className="col">
               <Panel title="Summary">
-                {product.images &&
+                {product.images && product.images.length > 0 &&
                   <img className="product-img" src={product.images[0].path} alt={product.images[0].name} />
                 }
                 <ListGroup iconList>

@@ -45,8 +45,7 @@ export class Supplier extends Component {
   }
 
   save = () => {
-    let body = { supplier: this.state.editItem };
-    API.put('productitem/' + this.props.prodItem.id, body).then( resp => {
+    API.put('supplier/' + this.state.editItem.id, this.state.editItem).then( resp => {
 
     }).catch(error => {
       console.log(error.response)
